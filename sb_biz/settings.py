@@ -135,6 +135,7 @@ INSTALLED_APPS = (
     #'django.contrib.admindocs',
     #'debug_toolbar',
     #'south',
+    'cities'
 )
 ########## END APPS CONFIGURATION
 
