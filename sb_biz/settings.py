@@ -1,18 +1,25 @@
-#Django settings for sb_biz project.
+# Django settings for sb_biz project.
+import os, sys
+from os.path import abspath, basename, dirname, join, normpath
+from sys import path
 
-from unipath import Path
+# Secret key, e-mail password, etc. require setting environment variables
+# to avoid making these visible in repo and elsewhere; hence, import environ...
+from os import environ
 
-PROJECT_DIR = Path(__file__).ancestor(3)
-MEDIA_ROOT = PROJECT_DIR.child("media")
-MEDIA_URL = ''
-STATIC_ROOT = PROJECT_DIR.child("static")
-STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-    PROJECT_DIR.child("assets"),
-)
-TEMPLATE_DIRS = (
-    PROJECT_DIR.child("templates"),
-)
+# Normally you should not import ANYTHING from Django directly into your 
+# settings, but ImproperlyConfigured is an exception.
+from django.core.exceptions import ImproperlyConfigured
+
+'''
+def get_env_setting(setting):
+    """ Get the environment setting or return exception """
+    try:
+        return environ[setting]
+    except KeyError:
+        error_msg = "Set the %s env variable" % setting
+        raise ImproperlyConfigured(error_msg)
+'''
 
 ADMINS = (
     ('Sean Bradley', 'sean@blogblimp.com'),
@@ -20,79 +27,88 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE':   'django.db.backends.postgresql_psycopg2',
-        'NAME': 'sb',           # Or path to database file if using sqlite3.
-        'USER': 'sb',
-        'PASSWORD': 'sb',
-        'HOST': 'localhost',    # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',             # Set to empty string for default.
-    }
-}
-
-# Hosts/domain names that are valid for this site; required if DEBUG is False
-# See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ["localhost"]
-
-EMAIL_HOST = "localhost"
-EMAIL_PORT = "1025"
-
-TIME_ZONE = 'America/Los_Angeles'
-
-LANGUAGE_CODE = 'en-us'
-
-SITE_ID = 1
-
-USE_I18N = True
-USE_L10N = True
-USE_TZ = True
+ROOT_URLCONF = 'sb_biz.urls'
 
 
-# Absolute filesystem path to the directory that will hold user-uploaded files.
-# Example: "/var/www/example.com/media/"
-#MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
+########## PATH CONFIGURATION
+# Absolute filesystem path to the Django project directory...
+DJANGO_ROOT = dirname(abspath(__file__))   #/srv/django/sb_biz/sb_biz
 
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash.
-# Examples: "http://example.com/media/", "http://media.example.com/"
-#MEDIA_URL = ''
+# Absolute filesystem path to the top-level project folder...
+# One level higher than typical two_scoops directory structure.
+SITE_ROOT = dirname(DJANGO_ROOT)
 
-# Absolute path to the directory static files should be collected to.
-# Don't put anything in this directory yourself; store your static files
-# in apps' "static/" subdirectories and in STATICFILES_DIRS.
-# Example: "/var/www/example.com/static/"
-#STATIC_ROOT = ''
+# Site name...
+SITE_NAME = basename(DJANGO_ROOT)
 
-# URL prefix for static files.
-# Example: "http://example.com/static/", "http://static.example.com/"
-#STATIC_URL = '/static/'
+# Add our project to our pythonpath, this way we don't need to type our project
+# name in our dotted import paths...
+path.append(DJANGO_ROOT)
+########## END PATH CONFIGURATION
 
-# Additional locations of static files
-#STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-#)
 
-# List of finder classes that know how to find static files in
-# various locations.
+########## STATIC FILE CONFIGURATION
+# All style related docs are in here...
+
+# Django can get rather nuanced with the way it deals with static files.
+# Particularly, it's careful with regard to namespacing of static files.
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#static-root
+# And: https://docs.djangoproject.com/en/dev/howto/static-files/
+# Typically, "manage.py collectstatic" gathers all static files included
+# in STATICFILES_DIRS into the STATIC_ROOT directory...  Also, typically,
+# STATIC_ROOT is called "assets".  But, for ease of this deployment, all
+# the static and style-related files (except for admin styles) are already
+# in one directory. So, we're pointing STATIC_ROOT directly to that directory.
+STATIC_ROOT = normpath(join(SITE_ROOT, 'static/site-styles'))
+
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
+STATIC_URL = '/static/'
+
+# See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
+STATICFILES_DIRS = (
+    #normpath(join(SITE_ROOT, 'static')),
+)
+
+# See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = 'g-=bw@0xcpp^b7n6vv3=ixsl3j-m%t7!rsd2cdr88t122b5*$9'
+#ADMIN_MEDIA_PREFIX = ""
 
-# List of callables that know how to import templates from various sources.
+########## END STATIC FILE CONFIGURATION
+
+
+########## MEDIA CONFIGURATION
+# I usually reserve "media" directories for files uploaded by users,
+# and let static assets live specifically in directories named "static".
+# Django has its own ideas about that, however...
+
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#media-root
+MEDIA_ROOT = normpath(join(SITE_ROOT, 'media'))
+
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#media-url
+MEDIA_URL = '/media/'
+########## END MEDIA CONFIGURATION
+
+
+########## TEMPLATE CONFIGURATION
+TEMPLATE_DIRS = (
+    #"/srv/django/sb_biz/templates"
+    normpath(join(SITE_ROOT, 'templates')),
+)
+
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
 #     'django.template.loaders.eggs.Loader',
 )
+########## END TEMPLATE CONFIGURATION
 
+
+########## MIDDLEWARE CONFIGURATION
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -102,19 +118,11 @@ MIDDLEWARE_CLASSES = (
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
+########## END MIDDLEWARE CONFIGURATION
 
-ROOT_URLCONF = 'sb_biz.urls'
 
-# Python dotted path to the WSGI application used by Django's runserver.
+########## APPS CONFIGURATION
 WSGI_APPLICATION = 'sb_biz.wsgi.application'
-
-#TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-#)
-
-INTERNAL_IPS = ('127.0.0.1',)
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -123,19 +131,84 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'debug_toolbar',
-    # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+    'django.contrib.admin',
+    #'django.contrib.admindocs',
+    #'debug_toolbar',
+    #'south',
 )
+########## END APPS CONFIGURATION
 
-#DEBUG SETTINGS
-#Also: 'debug-toolbar' in INSTALLED_APPS
 
-DEBUG = False
-TEMPLATE_DEBUG = DEBUG
+########## DATABASE CONFIGURATION
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'ubuntu',       # Or path to database file if using sqlite3.
+        'USER': 'ubuntu',
+        'PASSWORD': 'ubuntu',   # Obviously, use a better password or environ variable for production...
+        'HOST': 'localhost',    # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': '',             # Set to empty string for default.
+    }
+}
+########## END DATABASE CONFIGURATION
 
+
+########## EMAIL CONFIGURATION
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#email-host
+EMAIL_HOST = environ.get('EMAIL_HOST', 'smtp.gmail.com')
+
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#email-host-password
+EMAIL_HOST_PASSWORD = environ.get('EMAIL_HOST_PASSWORD', '')
+
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#email-host-user
+EMAIL_HOST_USER = environ.get('EMAIL_HOST_USER', 'sean@blogblimp.com')
+
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#email-port
+EMAIL_PORT = environ.get('EMAIL_PORT', 587)
+
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#email-subject-prefix
+EMAIL_SUBJECT_PREFIX = '[%s] ' % SITE_NAME
+
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#email-use-tls
+EMAIL_USE_TLS = True
+
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#server-email
+SERVER_EMAIL = EMAIL_HOST_USER
+########## END EMAIL CONFIGURATION
+
+
+########## MISC SETTINGS
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
+# And: http://drumcoder.co.uk/blog/2010/nov/12/apache-environment-variables-and-mod_wsgi/
+SECRET_KEY = environ.get('SECRET_KEY')
+
+# Hosts/domain names that are valid for this site; required if DEBUG is False
+# See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
+ALLOWED_HOSTS = ["localhost", "23.21.214.134", "ec2-184-72-94-22.compute-1.amazonaws.com"]
+
+TIME_ZONE = 'America/Los_Angeles'
+
+LANGUAGE_CODE = 'en-us'
+
+SITE_ID = 1
+
+USE_I18N = True
+
+USE_L10N = True
+
+USE_TZ = True
+########## END MISC SETTINGS
+
+
+########## DEBUG CONFIGURATION
+DEBUG = True #set this to false in production; make sure you have valid ALLOWED_HOSTS
+TEMPLATE_DEBUG = DEBUG #comment out in production
+
+#Django-Debug-Toolbar (see "INSTALLED_APPS")
+'''
 # See: https://github.com/django-debug-toolbar/django-debug-toolbar#installation
 MIDDLEWARE_CLASSES += (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
@@ -146,7 +219,11 @@ DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
     'SHOW_TEMPLATE_CONTEXT': True,
 }
+'''
+########## END DEBUG CONFIGURATION
 
+
+########## LOG CONFIGURATION
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error when DEBUG=False.
@@ -175,3 +252,4 @@ LOGGING = {
         },
     }
 }
+########## END LOG CONFIGURATION
