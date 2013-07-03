@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block article_one %}
+        <h2>View One</h2>
+        {{ all_geo_data|linebreaks|safe }}
+{% endblock %}
+
+{% block sidebarnav %}
+    <ul class="nav nav-list">
+        <li class="nav-header">SOME LINKS</li>
+        <li><a href="/">Home</a></li>
+        <li><a href="#">Add'l Link</a></li>
+    </ul>
+{% endblock %}
