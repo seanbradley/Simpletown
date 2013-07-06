@@ -9,9 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 from cities.models import City
   
-      
-template_name = "cities/view_one.html"
-                
+                      
 def filter_one(messyData):
     
     for x in messyData:
