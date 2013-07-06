@@ -1,9 +1,3 @@
-"""
-Views which allow users to create and activate accounts.
-
-"""
-
-
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
