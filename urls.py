@@ -1,25 +1,28 @@
 from django.conf.urls import patterns, include, url
 #from django.views.generic.simple import direct_to_template
 from django.contrib import admin
-from sb_biz import views
-from cities import views
 admin.autodiscover()
+
+import registration
+from sb_biz.views import IndexView
+from cities import views
 
 
 urlpatterns = patterns('',
 
-    ###### home page #####
+    ###### index #####
     #url(r'^$', direct_to_template, { 'template': 'index.html' }, 'index'),
     url(r'^$', IndexView.as_view()),
     
-    ##### view one #####
+    ##### cities #####
     url(r'^view_one', 'cities.views.view_one'),
 
-    ##### login, logout, etc #####
+    ##### registration #####
+    #url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^accounts/', include('registration.urls')),
     #url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
 
-    ##### admin dashboard #####
+    ##### admin #####
     url(r'^admin/', include(admin.site.urls)),
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     
