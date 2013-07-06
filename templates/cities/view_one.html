@@ -1,10 +1,9 @@
 {% extends "base.html" %}
 
+
 {% block article_one %}
-    <div>
         <h2>View One</h2>
-        {{ list_everything }}
-    </div><!--/span-->
+        {{ all_geo_data|linebreaks|safe }}
 {% endblock %}
 
 {% block sidebarnav %}
