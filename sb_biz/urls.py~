@@ -7,9 +7,12 @@ admin.autodiscover()
 urlpatterns = patterns('',
 
     url(r'^$', TemplateView.as_view(template_name='index.html'), name="index"),
-    url(r'^cities/', include('cities.urls', namespace="cities")),
+    
+    url(r'^view_one$', TemplateView.as_view(template_name = 'cities/view_one.html'), name="view_one"),
+    url(r'^view_two$', TemplateView.as_view(template_name = 'cities/view_two.html'), name="view_two"),
+
     url(r'^admin/', include(admin.site.urls)),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
+    
 )

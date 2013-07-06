@@ -1,3 +1,4 @@
+
 # Python bytecode:
 *.py[co]
 
@@ -16,3 +17,9 @@ build
 
 # Logs:
 *.log
+
+# Backup files:
+*_bak
+*_old
+
+
