@@ -84,17 +84,22 @@
                   <div class="nav-collapse">
                       <ul class="nav">
                           <li><a href="/">Home</a></li>
-                          <li><a href="#">Add'l Link</a></li>
-                      </ul>
-                      <ul class="nav" style="float:right">
-                          <li><a href="/admin">Login</a></li>
+                          <li><a href="/view_one">View One</a></li>
+                          <li><a href="/view_two">View Two</a></li>
+                          <li><a href="/admin">Admin</a></li>
+                      {% if user.is_authenticated %}
+                          <li class="nav" style="float:right">Hello {{user.first_name}}!</li>
+                      {% else %}
+                          <li class="nav" style="float:right"><a href="/admin">Login</a></li>
+                      {% endif %}
                       </ul>
                   </div><!--/.nav-collapse -->
 
                   <div class="nav">
                      <ul class="btn-toolbar" data-toggle="collapse" data-target=".nav-collapse">
-                          <li class="btn-navbar btn-inverse"><a href="/admin">Login</a></li>
-                          <li class="btn-navbar btn-inverse"><a href="#">Add'l Link</a></li>
+                          <li class="btn-navbar btn-inverse"><a href="/admin">Admin</a></li>
+                          <li class="btn-navbar btn-inverse"><a href="/view_two">View Two</a></li>
+                          <li class="btn-navbar btn-inverse"><a href="/view_one">View One</a></li>
                           <li class="btn-navbar btn-inverse"><a href="/">Home</a></li>
                       </ul>
                   </div>
@@ -121,6 +126,8 @@
                     <div class="row-fluid">
                     {% block article_one %}
                     {% endblock %}
+                    {% block content %}
+                    {% endblock %}                   
                     </div><!--/article_one-->
                 </article>
 

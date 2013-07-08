@@ -11,6 +11,12 @@ from os import environ
 # settings, but ImproperlyConfigured is an exception.
 from django.core.exceptions import ImproperlyConfigured
 
+# Importing everything implicitly is bad and goes against the Zen is Python.
+# But my laziness and desire not to redraft 15 templates is perhaps more
+# Zen than you know. Now, if only I'd adopt class-based views, then I'd 
+# be a Zen master... See https://github.com/yourcelf/django-registration-defaults
+#from registration_defaults.settings import *
+
 '''
 def get_env_setting(setting):
     """ Get the environment setting or return exception """
@@ -95,9 +101,11 @@ MEDIA_URL = '/media/'
 
 
 ########## TEMPLATE CONFIGURATION
+# The order of things here is important.
 TEMPLATE_DIRS = (
     #"/srv/django/sb_biz/templates"
     normpath(join(SITE_ROOT, 'templates')),
+    #REGISTRATION_TEMPLATE_DIR,
 )
 
 TEMPLATE_LOADERS = (
@@ -106,6 +114,13 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 ########## END TEMPLATE CONFIGURATION
+
+
+########## USER REGISTRATION / ACTIVATION CONFIGURATION
+ACCOUNT_ACTIVATION_DAYS = 7
+DEFAULT_FROM_EMAIL = 'webmaster@localhost'
+LOGIN_REDIRECT_URL = '/'
+########## END USER REGISTRATION / ACTIVATION CONFIGURATION
 
 
 ########## MIDDLEWARE CONFIGURATION
@@ -132,9 +147,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+    #'registration_defaults',
     #'django.contrib.admindocs',
     #'debug_toolbar',
     #'south',
+    'registration',
     'cities'
 )
 ########## END APPS CONFIGURATION
