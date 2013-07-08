@@ -105,7 +105,8 @@ MEDIA_URL = '/media/'
 TEMPLATE_DIRS = (
     #"/srv/django/sb_biz/templates"
     normpath(join(SITE_ROOT, 'templates')),
-    #REGISTRATION_TEMPLATE_DIR,
+    REGISTRATION_TEMPLATE_DIR,
+    #os.path.join(dirname, '../registration/templates'),
 )
 
 TEMPLATE_LOADERS = (
@@ -141,6 +142,7 @@ WSGI_APPLICATION = 'sb_biz.wsgi.application'
 
 INSTALLED_APPS = (
     'django.contrib.auth',
+    'django.contrib.humanize',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
