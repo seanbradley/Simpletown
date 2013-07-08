@@ -1,7 +1,7 @@
 import os, sys, pprint
 #import monitor
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "sb_biz.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
 # django site location
 sys.path.append('srv/django')

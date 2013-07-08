@@ -1,4 +1,15 @@
-# Django settings for sb_biz project.
+# Django settings
+
+# Based loosely on the Two Scoops of Django project template...
+# See: https://github.com/twoscoops/django-twoscoops-project
+#
+# Some fundamental differences are:
+#
+# A) SITE_ROOT and DJANGO_ROOT paths are one and the same
+# B) Except for DEBUG = False, settings are essentially 
+# the same for development and deployment
+
+
 import os, sys
 from os.path import abspath, basename, dirname, join, normpath
 from sys import path
@@ -10,12 +21,6 @@ from os import environ
 # Normally you should not import ANYTHING from Django directly into your 
 # settings, but ImproperlyConfigured is an exception.
 from django.core.exceptions import ImproperlyConfigured
-
-# Importing everything implicitly is bad and goes against the Zen is Python.
-# But my laziness and desire not to redraft 15 templates is perhaps more
-# Zen than you know. Now, if only I'd adopt class-based views, then I'd 
-# be a Zen master... See https://github.com/yourcelf/django-registration-defaults
-#from registration_defaults.settings import *
 
 '''
 def get_env_setting(setting):
@@ -38,11 +43,12 @@ ROOT_URLCONF = 'urls'
 
 ########## PATH CONFIGURATION
 # Absolute filesystem path to the Django project directory...
-DJANGO_ROOT = dirname(abspath(__file__))   #/srv/django/sb_biz/sb_biz
+DJANGO_ROOT = dirname(abspath(__file__))
 
 # Absolute filesystem path to the top-level project folder...
 # One level higher than typical two_scoops directory structure.
-SITE_ROOT = dirname(DJANGO_ROOT)
+#SITE_ROOT = dirname(DJANGO_ROOT)
+SITE_ROOT = DJANGO_ROOT
 
 # Site name...
 SITE_NAME = basename(DJANGO_ROOT)
@@ -60,7 +66,8 @@ path.append(DJANGO_ROOT)
 # Particularly, it's careful with regard to namespacing of static files.
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-root
 # And: https://docs.djangoproject.com/en/dev/howto/static-files/
-# Typically, "manage.py collectstatic" gathers all static files included
+#
+# Note: Typically, "manage.py collectstatic" gathers all static files included
 # in STATICFILES_DIRS into the STATIC_ROOT directory...  Also, typically,
 # STATIC_ROOT is called "assets".  But, for ease of this deployment, all
 # the static and style-related files (except for admin styles) are already
@@ -103,7 +110,6 @@ MEDIA_URL = '/media/'
 ########## TEMPLATE CONFIGURATION
 # The order of things here is important.
 TEMPLATE_DIRS = (
-    #"/srv/django/sb_biz/templates"
     normpath(join(SITE_ROOT, 'templates')),
     #REGISTRATION_TEMPLATE_DIR,
 )
@@ -137,7 +143,7 @@ MIDDLEWARE_CLASSES = (
 
 
 ########## APPS CONFIGURATION
-WSGI_APPLICATION = 'sb_biz.wsgi.application'
+WSGI_APPLICATION = 'wsgi.application'
 
 INSTALLED_APPS = (
     'django.contrib.auth',
