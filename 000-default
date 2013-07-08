@@ -1,5 +1,8 @@
 <VirtualHost *:80>
 
+    # Make a backup of the original 000-default in /etc/apache2/sites-enabled,
+    # then replace its contents with the following...
+
     ServerAdmin <you@example.com>
     ServerName <server_name>
     
