@@ -1,0 +1,52 @@
+<VirtualHost *:80>
+
+    ServerAdmin <you@example.com>
+    ServerName <server_name>
+    
+    DocumentRoot /srv/django/sb_biz 
+
+    # Secret key goes here; assign without using an equal sign or quotes...
+    SetEnv SECRET_KEY <secret_key>
+
+
+    # Settings for mod-wsgi and its daemon process...
+    
+    #Tell Apache where to find the actual wsgi file in Django...
+    WSGIScriptAlias / "/path/to/file/of/wsgi.py"
+
+    #Set hosts in hosts file in /etc directory...
+    #Set up WSGIDaimonProces like so...
+    WSGIDaemonProcess ec2_instance user=ubuntu group=ubuntu processes=1 threads=10
+    WSGIProcessGroup ec2_instance
+    
+    # Expose the directory containing the wsgi file...
+    <Directory "/path/to/directory/containing/wsgi.py">
+        Order deny,allow
+        Allow from all
+    </Directory>
+    
+    # Expose static and media directories...
+    AliasMatch ^/([^/]*\.css) /path/to/static/site-styles/$1
+    AliasMatch ^/([^/]*\.css) /path/to/static/admin-styles/$1
+    Alias /static/ /srv/django/sb_biz/static/
+    Alias /media/ /srv/django/sb_biz/media/
+    
+    <Directory "/path/to/static">
+        Order deny,allow
+        Allow from all
+    </Directory>
+
+    <Directory "/path/to/media">
+        Order deny,allow
+        Allow from all
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+
+    # Possible values include: debug, info, notice, warn, error, crit,
+    # alert, emerg.
+    LogLevel warn
+
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+    
+</VirtualHost>
