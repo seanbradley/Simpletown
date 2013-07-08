@@ -3,14 +3,14 @@ from django.contrib import admin
 admin.autodiscover()
 
 import registration
-from sb_biz.views import IndexView
+from main import views
 from cities import views
 
 
 urlpatterns = patterns('',
 
     ###### index #####
-    url(r'^$', IndexView.as_view()),
+    url(r'^$', 'main.views.index'),
     
     ##### cities #####
     url(r'^view_one', 'cities.views.view_one'),
