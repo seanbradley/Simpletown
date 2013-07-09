@@ -15,7 +15,7 @@ class City(models.Model):
     primary_latitude = models.DecimalField(may_length = 5, decimal_places = 2),
     primary_longitude = models.DecimalField(may_length = 5, decimal_places = 2),
     state_abbreviation = models.CharField(max_length = 2),
-    state_name = models.CharField(max_length = 50
+    state_name = models.CharField(max_length = 50)
     
     def __unicode__(self):
             return u'%s %s %s %s' % (self.county_name, self.name, self.primary_latitude, self.primary_longitude)
