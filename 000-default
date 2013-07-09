@@ -1,19 +1,19 @@
 <VirtualHost *:80>
 
     # Make a backup of the original 000-default in /etc/apache2/sites-enabled,
-    # then replace its contents with the following...
+    # then replace its contents with all of the following...
+    
+    ####################################################################
 
     ServerAdmin <you@example.com>
     ServerName <server_name>
-    
-    DocumentRoot /srv/django/sb_biz 
 
     # Secret key goes here; assign without using an equal sign or quotes...
     SetEnv SECRET_KEY <secret_key>
-
+    
 
     # Settings for mod-wsgi and its daemon process...
-    
+    ####################################################################
     #Tell Apache where to find the actual wsgi file in Django...
     WSGIScriptAlias / "/path/to/file/of/wsgi.py"
 
@@ -31,8 +31,8 @@
     # Expose static and media directories...
     AliasMatch ^/([^/]*\.css) /path/to/static/site-styles/$1
     AliasMatch ^/([^/]*\.css) /path/to/static/admin-styles/$1
-    Alias /static/ /srv/django/sb_biz/static/
-    Alias /media/ /srv/django/sb_biz/media/
+    Alias /static/ /path/to/static/
+    Alias /media/ /path/to/media/
     
     <Directory "/path/to/static">
         Order deny,allow
@@ -43,6 +43,10 @@
         Order deny,allow
         Allow from all
     </Directory>
+    
+
+    # Settings for logging...
+    ####################################################################
 
     ErrorLog ${APACHE_LOG_DIR}/error.log
 
