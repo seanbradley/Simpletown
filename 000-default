@@ -28,6 +28,9 @@
         Allow from all
     </Directory>
     
+    
+    # Settings for /static and /media directories...
+    ####################################################################
     # Expose static and media directories...
     AliasMatch ^/([^/]*\.css) /path/to/static/site-styles/$1
     AliasMatch ^/([^/]*\.css) /path/to/static/admin-styles/$1
