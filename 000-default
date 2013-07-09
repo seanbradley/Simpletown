@@ -2,7 +2,6 @@
 
     # Make a backup of the original 000-default in /etc/apache2/sites-enabled,
     # then replace its contents with all of the following...
-    
     ####################################################################
 
     ServerAdmin <you@example.com>
@@ -14,6 +13,7 @@
 
     # Settings for mod-wsgi and its daemon process...
     ####################################################################
+    
     #Tell Apache where to find the actual wsgi file in Django...
     WSGIScriptAlias / "/path/to/file/of/wsgi.py"
 
@@ -31,6 +31,7 @@
     
     # Settings for /static and /media directories...
     ####################################################################
+    
     # Expose static and media directories...
     AliasMatch ^/([^/]*\.css) /path/to/static/site-styles/$1
     AliasMatch ^/([^/]*\.css) /path/to/static/admin-styles/$1
