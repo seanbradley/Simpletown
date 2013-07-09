@@ -12,8 +12,8 @@ class City(models.Model):
     link_title = models.CharField(max_length = 50, null=True, blank=False),
     url = models.URLField(max_length = 200),
     name = models.CharField(max_length = 50),
-    primary_latitude = models.DecimalField(may_length = 5, decimal_places = 2),
-    primary_longitude = models.DecimalField(may_length = 5, decimal_places = 2),
+    primary_latitude = models.DecimalField(max_length = 5, decimal_places = 2),
+    primary_longitude = models.DecimalField(max_length = 5, decimal_places = 2),
     state_abbreviation = models.CharField(max_length = 2),
     state_name = models.CharField(max_length = 50)
     
