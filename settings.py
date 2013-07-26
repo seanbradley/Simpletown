@@ -6,7 +6,7 @@
 # Some fundamental differences are:
 #
 # A) SITE_ROOT and DJANGO_ROOT paths are one and the same
-# B) Except for DEBUG = False, settings are essentially 
+# B) Except for DEBUG = False, settings are essentially
 # the same for development and deployment
 
 
@@ -18,7 +18,7 @@ from sys import path
 # to avoid making these visible in repo and elsewhere; hence, import environ...
 from os import environ
 
-# Normally you should not import ANYTHING from Django directly into your 
+# Normally you should not import ANYTHING from Django directly into your
 # settings, but ImproperlyConfigured is an exception.
 from django.core.exceptions import ImproperlyConfigured
 
@@ -156,7 +156,8 @@ INSTALLED_APPS = (
     #'registration_defaults',
     #'django.contrib.admindocs',
     #'debug_toolbar',
-    #'south',
+    #'django-extensions',
+    'south',
     'registration',
     'cities'
 )

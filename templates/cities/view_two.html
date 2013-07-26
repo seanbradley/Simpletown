@@ -3,18 +3,8 @@
 {% block article_one %}
     <div>
         <h2>View Two</h2>
-        {% if error_message %}<p>{{ error_message }}</p>{% endif %}
-
-        <form action="{% url 'cities.list_by_county' cities.county %}" method="get">
-        {% csrf_token %}
-        {% for choice in cities.choice_set.all %}
-            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
-            <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
-        {% endfor %}
-        <input type="submit" value="Vote" />
-        </form>
         
-        {{ list_by_county }}
+        {{ cities }}
         
     </div><!--/span-->
 {% endblock %}
