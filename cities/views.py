@@ -53,15 +53,14 @@ def view_one(self):
     
     return render_to_response('cities/view_one.html', context)
     
-'''
-class ViewTwo(TemplateView):
- 
-    template_name = "cities/view_two.html"
-
-    #list_by_county = []
     
-    def get_context_data(self):
-        return {
-            #'list_by_county': list_by_county
-        }
-'''
+    
+@login_required
+def view_two(self):
+    
+    cities = City.objects.all()
+    
+    context = {'cities': cities}
+    
+    return render_to_response('cities/view_two.html', context)
+
