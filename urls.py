@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     
     ##### cities #####
     url(r'^view_one', 'cities.views.view_one'),
+    url(r'^view_two', 'cities.views.view_two'),
 
     ##### registration #####
     url(r'^accounts/', include('registration.urls')),

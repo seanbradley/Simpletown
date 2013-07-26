@@ -95,8 +95,13 @@
                       </ul>
                   </div><!--/.nav-collapse -->
 
-                  <div class="nav">
+                  <div class="nav" style="float:right">
                      <ul class="btn-toolbar" data-toggle="collapse" data-target=".nav-collapse">
+                      {% if user.is_authenticated %}
+                          <li class="nav" style="float:right">Hello {{user.first_name}}!</li>
+                      {% else %}
+                          <li class="nav" style="float:right"><a href="/admin">Login</a></li>
+                      {% endif %}
                           <li class="btn-navbar btn-inverse"><a href="/admin">Admin</a></li>
                           <li class="btn-navbar btn-inverse"><a href="/view_two">View Two</a></li>
                           <li class="btn-navbar btn-inverse"><a href="/view_one">View One</a></li>
