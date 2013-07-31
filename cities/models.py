@@ -17,8 +17,12 @@ class City(models.Model):
     state_abbreviation = models.CharField('state_abbreviation', max_length = 2, null=True, blank=True)
     state_name = models.CharField('state_name', max_length = 25, null=True, blank=True)
 
+
+    class Meta:
+        ordering = ["name"]
+
     def __unicode__(self):
-        return u'%s %s %s %s' % (self.county_name, self.name, self.primary_latitude, self.primary_longitude)
+        return self.name
 
 
 '''
