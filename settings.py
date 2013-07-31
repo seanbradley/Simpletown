@@ -79,14 +79,14 @@ STATIC_URL = '/static/'
 
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
 STATICFILES_DIRS = (
-    #normpath(join(SITE_ROOT, 'static')),
+    normpath(join(SITE_ROOT, 'static')),
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 #ADMIN_MEDIA_PREFIX = ""
@@ -157,11 +157,20 @@ INSTALLED_APPS = (
     #'django.contrib.admindocs',
     #'debug_toolbar',
     #'django-extensions',
+    #'djcelery'
+    #'kombu.transport.django'
     'south',
     'registration',
     'cities'
 )
 ########## END APPS CONFIGURATION
+
+
+########## CELERY CONFIGURATION
+#import djcelery
+#djcelery.setup.loader()
+#BROKER_URL = "django://"  #use celeryd -l info
+########## END CELERY CONFIGURATION
 
 
 ########## DATABASE CONFIGURATION

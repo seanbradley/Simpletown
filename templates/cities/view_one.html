@@ -1,14 +1,16 @@
 {% extends "base.html" %}
 
 {% block article_one %}
-        <h2>View One</h2>
+        <h2>All city names</h2>
+        <p><strong>This geographic data includes official city names and
+        location data from the USGS Geographic Names Information System
+        (GNIS).</strong></p>
+        <p><strong>GNIS data includes incorporated places, census designated
+        areas, unincorporated places, counties, and populated places.</strong></p>
+        <p><strong>See http://www.sba.gov/about-sba-services/7617 for more
+        info.</strong></p>
+        <p><strong>As of July 2013, there are 5048 cities or locations
+        in the list.</strong></p>
+        <hr>
         {{ all_geo_data|linebreaks|safe }}
-{% endblock %}
-
-{% block sidebarnav %}
-    <ul class="nav nav-list">
-        <li class="nav-header">SOME LINKS</li>
-        <li><a href="/">Home</a></li>
-        <li><a href="#">Add'l Link</a></li>
-    </ul>
 {% endblock %}

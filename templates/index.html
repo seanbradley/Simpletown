@@ -19,40 +19,22 @@
 
 {% block header %}
     <div class="hero-unit" id="hero-image">
-        <p style="padding-top:40px;padding-bottom:80px">This test Django/Python application is part of your interview with our company. We require our developers to know a certain level of programming, integration, and system administration for development.</p>
+        <p style="padding-top:40px;padding-bottom:80px">
+        This site provides US Geographic Survey city names and associated data such as County, State, Latitude, and Longitude as made available via the Small Business Association.  (See http://www.sba.gov/about-sba-services/7617 for more info.)</p>
     </div>
 {% endblock %}
 
 {% block article_one %}
     <div>
-        <h2>Test Application</h2>
+        <h2>All Cities</h2>
         <br />
-        <p>The test consists of building a simple online application to show a list of cities, counties, and coordinates (latitude and longitude) in California.</p>
-        <br />
-        <p>View#1, must be able to view all cities, counties, and coordinates.</p>
-        <p>View#2, must be able to view all cities and coordinates in a specific county.  A form will be required to a list of cities per county.</p>
-        <br />
-        <p>To be consistent, please import JSON data from the following URL.</p>
-        <ul>
-            <li>http://www.sba.gov/about-sba-services/7617</li>
-            <li>http://api.sba.gov/geodata/city_links_for_state_of/CA.json</li>
-        </ul>
-        <br />
-        <p>Create a simple Django project.  Set up Django administration.  Since Django has a built-in account management application, you can use that for authentication (login/logout).</p>
-        <br />
-        <p>User will login and view the above scenario.</p>
-    </div><!--/span-->
+        <p>A listing of all cities in the database.</p>
 {% endblock %}
 
 {% block article_two %}
     <div>
-        <h2>Requirements</h2>
+        <h2>Search By County</h2>
         <br />
-        <ul>
-            <li>Create a Github account.  You will need to use Git to check-in and check-out code.</li>
-            <li>Create an AWS developer account.</li>
-            <li>The test application will need to be viewable on the web so you can use a free AWS EC2 account to create an Ubuntu instance and install Apache, WSGI, Django, PostgreSQL, and etc.  Be sure to change the AWS security settings to open the appropriate ports (i.e. port 80).</li>
-            <li>Lastly, deploy your code to the web server and to a public repository on your free Github account for review.</li>
-        </ul>
+        <p>Allows you to search for all cities within a given county.</p>
     </div><!--/span-->
 {% endblock %}

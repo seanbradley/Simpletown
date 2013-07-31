@@ -2,17 +2,19 @@
 
 {% block article_one %}
     <div>
-        <h2>View Two</h2>
-        
-        {{ cities }}
-        
-    </div><!--/span-->
-{% endblock %}
+        <h2>Enter a county name</h2>
+        <p>...and we'll retrieve a list of cities in that county.</p>
+        {% if form.errors %}
+            <p style="color: red;">
+                Please correct the error{{ form.errors|pluralize }} below.
+            </p>
+        {% endif %}
 
-{% block sidebarnav %}
-    <ul class="nav nav-list">
-        <li class="nav-header">SOME LINKS</li>
-        <li><a href="/">Home</a></li>
-        <li><a href="#">Add'l Link</a></li>
-    </ul>
+        <form action="/view_two" method="POST">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input type="submit" value="Submit">
+        </form>
+
+    </div><!--/span-->
 {% endblock %}
