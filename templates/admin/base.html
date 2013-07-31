@@ -3,8 +3,8 @@
 <html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
 <head>
 <title>{% block title %}{% endblock %}</title>
-<link type="text/css" href="{% static "site-styles/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet" />
-<link type="text/css" href="{% static "site-styles/bootstrap/css/bootstrap-responsive.min.css" %}" rel="stylesheet" />
+<link type="text/css" href="{% static "site-styles/css/bootstrap.min.css" %}" rel="stylesheet" />
+<link type="text/css" href="{% static "site-styles/css/bootstrap-responsive.min.css" %}" rel="stylesheet" />
 <link type="text/css" href="{% static "admin-styles/css/base.css" %}" rel="stylesheet" />
 {% block extrastyle %}{% endblock %}
 <!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="{% block stylesheet_ie %}{% static "admin/css/ie.css" %}{% endblock %}" /><![endif]-->
