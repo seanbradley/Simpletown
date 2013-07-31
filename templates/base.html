@@ -1,9 +1,9 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>    
+  <head>
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
-    <title>Dreamworld Test</title>
+    <title>Cities &mdash; US Geographic Survey</title>
     <meta name="dc.language" content="en" />
     <meta name="geo.country" content="US" />
     <meta name="viewport" content="width=device-width; initial-scale=1.0" />
@@ -13,8 +13,8 @@
     <meta name="description" content="" />
     <meta name="robots" content="index, follow" />
     -->
-    <link type="text/css" href="{% static "site-styles/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet" />
-    <link type="text/css" href="{% static "site-styles/bootstrap/css/bootstrap-responsive.min.css" %}" rel="stylesheet" />
+    <link type="text/css" href="{% static "site-styles/css/bootstrap.min.css" %}" rel="stylesheet" />
+    <link type="text/css" href="{% static "site-styles/css/bootstrap-responsive.min.css" %}" rel="stylesheet" />
     <link type="text/css" href="http://www.seanbradley.biz/static/compass_project/stylesheets/screen.css" rel="stylesheet" />
     <!-- fav and touch icons -->
     <!--
@@ -23,16 +23,16 @@
     <link rel="apple-touch-icon" sizes="72x72" href="{% static "img/apple-touch-icon-72x72.png" %}" />
     <link rel="apple-touch-icon" sizes="114x114" href="{% static "img/apple-touch-icon-114x114.png" %}" />
     -->
-    
+
     <!--[if IE]>
     <link rel="stylesheet" type="text/css" href="{% static "css/iefix.css" %}" />
     <![endif]-->
-    
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
-    
+
     {% block scripts %}
     {% endblock %}
-    
+
     {% if not debug %}
     <script type="text/javascript">
         var _gaq = _gaq || [];
@@ -47,7 +47,7 @@
         })();
     </script>
     {% endif %}
-    
+
     <style type="text/css">
         body {
             padding-top: 60px;
@@ -56,7 +56,7 @@
             padding: 9px 0;
         }
     </style>
-    
+
     <!--[if !IE 7]>
     <style type="text/css">
         #wrap {display:table;height:100%}
@@ -65,7 +65,7 @@
 
     {% block head %}
     {% endblock %}
-    
+
 </head>
 
 <body>
@@ -79,32 +79,22 @@
             <div class="navbar-inner">
                 <div class="container-fluid">
 
-                  <a class="brand" href="/">Dreamworld Test</a>
+                  <a class="brand" href="/">Cities &mdash; US Geographic Survey</a>
 
-                  <div class="nav-collapse">
+                  <div class="nav-collapse" style="float:right">
                       <ul class="nav">
                           <li><a href="/">Home</a></li>
-                          <li><a href="/view_one">View One</a></li>
-                          <li><a href="/view_two">View Two</a></li>
+                          <li><a href="/view_one">All Cities</a></li>
+                          <li><a href="/view_two">Search By County</a></li>
                           <li><a href="/admin">Admin</a></li>
-                      {% if user.is_authenticated %}
-                          <li class="nav" style="float:right">Hello {{user.first_name}}!</li>
-                      {% else %}
-                          <li class="nav" style="float:right"><a href="/admin">Login</a></li>
-                      {% endif %}
                       </ul>
                   </div><!--/.nav-collapse -->
 
                   <div class="nav" style="float:right">
                      <ul class="btn-toolbar" data-toggle="collapse" data-target=".nav-collapse">
-                      {% if user.is_authenticated %}
-                          <li class="nav" style="float:right">Hello {{user.first_name}}!</li>
-                      {% else %}
-                          <li class="nav" style="float:right"><a href="/admin">Login</a></li>
-                      {% endif %}
                           <li class="btn-navbar btn-inverse"><a href="/admin">Admin</a></li>
-                          <li class="btn-navbar btn-inverse"><a href="/view_two">View Two</a></li>
-                          <li class="btn-navbar btn-inverse"><a href="/view_one">View One</a></li>
+                          <li class="btn-navbar btn-inverse"><a href="/view_two">Search By County</a></li>
+                          <li class="btn-navbar btn-inverse"><a href="/view_one">All Cities</a></li>
                           <li class="btn-navbar btn-inverse"><a href="/">Home</a></li>
                       </ul>
                   </div>
@@ -132,7 +122,7 @@
                     {% block article_one %}
                     {% endblock %}
                     {% block content %}
-                    {% endblock %}                   
+                    {% endblock %}
                     </div><!--/article_one-->
                 </article>
 
@@ -154,13 +144,15 @@
                 <div id="sidebar" class="span3">
                     <div class="well sidebar-nav">
                         <div style="text-align: center">
-                            <img src="http://dreamworldpartners.com/wp-content/themes/dreamworld/images/dwp-logo.png" alt="logo"/>
+                            <img src="{% static "site-styles/img/dwp-logo.png" %}" alt="logo"/>
                         </div>
                         <div style="padding:10px"></div>
                         <ul class="nav nav-list">
-                            <li class="nav-header">SOME LINKS</li>
+                            <li class="nav-header">MENU</li>
                             <li><a href="/">Home</a></li>
-                            <li><a href="#">Add'l Link</a></li>
+                            <li><a href="/view_one">All Cities</a></li>
+                            <li><a href="/view_two">Search By County</a></li>
+                            <li><a href="/admin">Admin</a></li>
                         </ul>
                         {% block sidebarnav %}
                         {% endblock %}
@@ -183,7 +175,7 @@
 
     <!--Analytics and Add'l Scripts-->
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <script src="{% static "site-styles/js/bootstrap.min.js" %}"></script>
 
 </body>
 </html>
