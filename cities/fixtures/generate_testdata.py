@@ -21,7 +21,7 @@ in the resultant list, will be a single item in a single list, like so...
 
   [{...{...}}, {...{...}}, {...{...}} etc... ]
 
-As of July 25, 2013, there are 5048 items or objects in the SBA list.  Once
+As of July 25, 2013, this script will generate 5048 items or objects.  Once
 it's cleaned up, and--if it were properly indented (optional) to make it
 more human-readable--it should look like something like...
 
