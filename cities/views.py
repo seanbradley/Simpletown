@@ -27,7 +27,7 @@ def filter_one(messyData):
 
 @login_required
 @cache_page(3600) # Cache view result for one hour
-def view_one(self):
+def view_one(request):
 
     geo_data = []
 
@@ -56,9 +56,12 @@ def view_one(self):
     # return all states...and mop up some bits and pieces of ancillary jive
     all_geo_data = str(geo_data).replace(',', '\n').replace('u\'', '\'').replace('\'', '').replace('[', '').replace(']', '').replace('{', '').replace('}', '\n')
 
-    context = { 'all_geo_data': all_geo_data }
+    context = {'all_geo_data': all_geo_data}
 
-    return render_to_response('cities/view_one.html', context)
+    return render_to_response(
+    'cities/view_one.html',
+    RequestContext(request, context)
+    )
 
 
 
@@ -70,13 +73,15 @@ def view_two(request):
         if form.is_valid():
             data = form.data['county_name']
             results = City.objects.filter(county_name = data)
+            context = {'results': results}
             return render_to_response(
             'cities/results.html',
-            RequestContext(request, {'results': results})
+            RequestContext(request, context)
             )
     else:
         form = CityForm()
+        context = {'form': form}
     return render_to_response(
     'cities/view_two.html',
-    RequestContext(request, {'form': form})
+    RequestContext(request, context)
     )

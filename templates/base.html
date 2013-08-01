@@ -79,25 +79,37 @@
             <div class="navbar-inner">
                 <div class="container-fluid">
 
-                  <a class="brand" href="/">Simpletown</a>
+                    <a class="brand" href="/">Simpletown</a>
 
-                  <div class="nav-collapse" style="float:right">
-                      <ul class="nav">
-                          <li><a href="/">Home</a></li>
-                          <li><a href="/view_one">All Cities</a></li>
-                          <li><a href="/view_two">Search By County</a></li>
-                          <li><a href="/admin">Admin</a></li>
-                      </ul>
-                  </div><!--/.nav-collapse -->
+                    <div class="nav-collapse" style="float:right">
+                        <ul class="nav">
+                            {% if user.is_active %}
+                            <li><a>Welcome, {% filter force_escape %}{% firstof user.get_short_name user.get_username %}{% endfilter %}!</a></li>
+                            {% endif %}
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/view_one">All Cities</a></li>
+                            <li><a href="/view_two">Search By County</a></li>
+                            <li><a href="/admin">Admin</a></li>
+                            {% if user.is_active %}
+                            <li><a href="{% url 'auth_logout' %}">Logout</a></li>
+                            {% endif %}
+                        </ul>
+                    </div><!--/.nav-collapse -->
 
-                  <div class="nav" style="float:right">
-                     <ul class="btn-toolbar" data-toggle="collapse" data-target=".nav-collapse">
-                          <li class="btn-navbar btn-inverse"><a href="/admin">Admin</a></li>
-                          <li class="btn-navbar btn-inverse"><a href="/view_two">Search By County</a></li>
-                          <li class="btn-navbar btn-inverse"><a href="/view_one">All Cities</a></li>
-                          <li class="btn-navbar btn-inverse"><a href="/">Home</a></li>
-                      </ul>
-                  </div>
+                    <div class="nav" style="float:right">
+                        <ul class="btn-toolbar" data-toggle="collapse" data-target=".nav-collapse">
+                            {% if user.is_active %}
+                            <li><a href="{% url 'auth_logout' %}">Logout</a></li>
+                            {% endif %}
+                            <li class="btn-navbar btn-inverse"><a href="/admin">Admin</a></li>
+                            <li class="btn-navbar btn-inverse"><a href="/view_two">Search By County</a></li>
+                            <li class="btn-navbar btn-inverse"><a href="/view_one">All Cities</a></li>
+                            <li class="btn-navbar btn-inverse"><a href="/">Home</a></li>
+                            {% if user.is_active %}
+                            <li><a>Welcome, {% filter force_escape %}{% firstof user.get_short_name user.get_username %}{% endfilter %}!</a></li>
+                            {% endif %}
+                         </ul>
+                    </div>
 
                 </div><!--/.container fluid -->
             </div><!--/.navbar-inner -->
@@ -105,6 +117,8 @@
 
         </nav>
         {% endblock %}
+
+
 
         <div class="row-fluid">
 
