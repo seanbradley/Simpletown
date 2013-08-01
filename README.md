@@ -18,7 +18,7 @@ The app has two views.  In view one: all cities and some associated data for eac
 View one retrieves data dynamically from the SBA API via Kenneth Reitz's _Requests_ library; view two retrieves data from a PostgreSQL database, which was populated with city info by manually leveraging a large JSON fixture--the fixture itself being created from the the same SBA API.
 
 ##TECHNOLOGY STACK
-Django, mod_wsgi, and Apache installed on an AWS EC2 server (Ubuntu Precise 12.04-i386; ami-def89fb7) associated with an Elastic IP. PostgreSQL is the database used in both the development and production environment.  Style provided courtesy of Bootstrap.
+Django, mod_wsgi, and Apache installed on an AWS EC2 server (Ubuntu Precise 12.04-i386; ami-def89fb7) associated with an Elastic IP. PostgreSQL is the database used in both the development and production environment.  Style provided courtesy of Bootstrap. Validated HTML5/CSS3.
 
 ##TODO
 -the virtualenv needs to be created with the --no-site-packages flag; this wasn't done on either the development machine nor the production machine, so the requirements.txt file may be a bit out of sync with regard to dependencies, and may require tweaking.
