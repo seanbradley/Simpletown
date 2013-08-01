@@ -16,6 +16,7 @@ from cities.models import City
 from cities.forms import CityForm
 #from cities.tasks import taskname
 
+
 def filter_one(messyData):
 
     for x in messyData:

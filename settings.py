@@ -243,7 +243,7 @@ USE_TZ = True
 
 
 ########## DEBUG CONFIGURATION
-DEBUG = True #set this to false in production; make sure you have valid ALLOWED_HOSTS
+DEBUG = False #set this to false in production; make sure you have valid ALLOWED_HOSTS
 TEMPLATE_DEBUG = DEBUG #comment out in production
 
 #Django-Debug-Toolbar (see "INSTALLED_APPS")
