@@ -1,28 +1,14 @@
 # Django settings
 
-# Based loosely on the Two Scoops of Django project template...
-# See: https://github.com/twoscoops/django-twoscoops-project
-#
-# Some fundamental differences are:
-#
-# A) SITE_ROOT and DJANGO_ROOT paths are one and the same
-# B) Except for DEBUG = False, settings are essentially
-# the same for development and deployment
-
-
 import os, sys
+from os import environ
 from os.path import abspath, basename, dirname, join, normpath
 from sys import path
-
-# Secret key, e-mail password, etc. require setting environment variables
-# to avoid making these visible in repo and elsewhere; hence, import environ...
-from os import environ
 
 # Normally you should not import ANYTHING from Django directly into your
 # settings, but ImproperlyConfigured is an exception.
 from django.core.exceptions import ImproperlyConfigured
 
-'''
 def get_env_setting(setting):
     """ Get the environment setting or return exception """
     try:
@@ -30,10 +16,10 @@ def get_env_setting(setting):
     except KeyError:
         error_msg = "Set the %s env variable" % setting
         raise ImproperlyConfigured(error_msg)
-'''
+
 
 ADMINS = (
-    ('Sean Bradley', 'sean@blogblimp.com'),
+    ('Your Name', 'you@yourdomain.com'),
 )
 
 MANAGERS = ADMINS
@@ -46,7 +32,6 @@ ROOT_URLCONF = 'urls'
 DJANGO_ROOT = dirname(abspath(__file__))
 
 # Absolute filesystem path to the top-level project folder...
-# One level higher than typical two_scoops directory structure.
 #SITE_ROOT = dirname(DJANGO_ROOT)
 SITE_ROOT = DJANGO_ROOT
 
@@ -72,7 +57,8 @@ path.append(DJANGO_ROOT)
 # STATIC_ROOT is called "assets".  But, for ease of this deployment, all
 # the static and style-related files (except for admin styles) are already
 # in one directory. So, we're pointing STATIC_ROOT directly to that directory.
-STATIC_ROOT = normpath(join(SITE_ROOT, 'static/site-styles'))
+#STATIC_ROOT = normpath(join(SITE_ROOT, 'static/site-styles'))
+STATIC_ROOT = os.environ.get('MEDIA_ROOT', os.path.join(SITE_ROOT, 'static/site-styles'))
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
 STATIC_URL = '/static/'
@@ -100,31 +86,12 @@ STATICFILES_FINDERS = (
 # Django has its own ideas about that, however...
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#media-root
-MEDIA_ROOT = normpath(join(SITE_ROOT, 'media'))
+#MEDIA_ROOT = normpath(join(SITE_ROOT, 'media'))
+MEDIA_ROOT = os.environ.get('MEDIA_ROOT', os.path.join(SITE_ROOT, 'media'))
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#media-url
 MEDIA_URL = '/media/'
 ########## END MEDIA CONFIGURATION
-
-
-########## TEMPLATE CONFIGURATION
-# The order of things here is important.
-TEMPLATE_DIRS = (
-    normpath(join(SITE_ROOT, 'templates')),
-    #REGISTRATION_TEMPLATE_DIR,
-)
-
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
-)
-
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.core.context_processors.request',
-    'django.contrib.auth.context_processors.auth'
-)
-########## END TEMPLATE CONFIGURATION
 
 
 ########## USER REGISTRATION / ACTIVATION CONFIGURATION
@@ -158,17 +125,38 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    #'registration_defaults',
-    #'django.contrib.admindocs',
-    #'debug_toolbar',
-    #'django-extensions',
-    #'djcelery'
-    #'kombu.transport.django'
     'south',
     'registration',
     'cities'
+    # Some add'l useful apps you might want to install if using SIMPLETOWN'S FAST LANE AMI
+    #'django.contrib.admindocs',
+    #'registration_defaults',  #to use, may need to uncomment REGISTRATION_TEMPLATE_DIR below
+    #'debug_toolbar', #to use, uncomment appropriate lines in DEBUG CONFIGURATION below
+    #'django-extensions', #to use, just uncomment this line
+    #'djcelery'  #to use, uncomment lines in CELERY CONFIGURATION below
+    #'kombu.transport.django' #to use, uncomment lines in CELERY CONFIGURATION below
 )
 ########## END APPS CONFIGURATION
+
+
+########## TEMPLATE CONFIGURATION
+# The order of things here is important.
+TEMPLATE_DIRS = (
+    normpath(join(SITE_ROOT, 'templates')),
+#    REGISTRATION_TEMPLATE_DIR,
+)
+
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+#    'django.template.loaders.eggs.Loader',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.request',
+    'django.contrib.auth.context_processors.auth'
+)
+########## END TEMPLATE CONFIGURATION
 
 
 ########## CELERY CONFIGURATION
@@ -203,7 +191,7 @@ EMAIL_HOST = environ.get('EMAIL_HOST', 'smtp.gmail.com')
 EMAIL_HOST_PASSWORD = environ.get('EMAIL_HOST_PASSWORD', '')
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#email-host-user
-EMAIL_HOST_USER = environ.get('EMAIL_HOST_USER', 'sean@blogblimp.com')
+EMAIL_HOST_USER = environ.get('EMAIL_HOST_USER', '')
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#email-port
 EMAIL_PORT = environ.get('EMAIL_PORT', 587)
@@ -226,7 +214,8 @@ SECRET_KEY = environ.get('SECRET_KEY')
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ["localhost", "23.21.214.134", "ec2-184-72-94-22.compute-1.amazonaws.com"]
+aws_instance = curl http://169.254.169.254/latest/meta-data/public-ipv4
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", aws_instance]
 
 TIME_ZONE = 'America/Los_Angeles'
 
@@ -243,11 +232,11 @@ USE_TZ = True
 
 
 ########## DEBUG CONFIGURATION
-DEBUG = True #set this to false in production; make sure you have valid ALLOWED_HOSTS
-TEMPLATE_DEBUG = DEBUG #comment out in production
+DEBUG =  bool(os.environ.get('DEBUG', False))
+#TEMPLATE_DEBUG = DEBUG
 
-#Django-Debug-Toolbar (see "INSTALLED_APPS")
 '''
+# Django-Debug-Toolbar settings...
 # See: https://github.com/django-debug-toolbar/django-debug-toolbar#installation
 MIDDLEWARE_CLASSES += (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
