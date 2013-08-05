@@ -214,8 +214,8 @@ SECRET_KEY = environ.get('SECRET_KEY')
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-aws_instance = curl http://169.254.169.254/latest/meta-data/public-ipv4
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", aws_instance]
+#aws_instance = curl http://169.254.169.254/latest/meta-data/public-ipv4
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "*", "23.21.214.134"]
 
 TIME_ZONE = 'America/Los_Angeles'
 
@@ -232,7 +232,7 @@ USE_TZ = True
 
 
 ########## DEBUG CONFIGURATION
-DEBUG =  bool(os.environ.get('DEBUG', False))
+DEBUG =  False #bool(os.environ.get('DEBUG', False))
 #TEMPLATE_DEBUG = DEBUG
 
 '''
