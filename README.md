@@ -20,6 +20,7 @@ _Voila'._  I give you Simpletown.
 
 As such, Simpletown serves as a minimal, barebones example of a Django implementation that fetches data from an external resource. It taps an API provided by the Small Business Admnistration (SBA), which provides US Geographic Survey city names and associated data (e.g., County, State, Latitude, and Longitude) in JSON format.  See http://www.sba.gov/about-sba-services/7617 for more info about the API.
 
+<<<<<<< HEAD
 The project is laid out so that the <repository_root> and <django_project_root> are the same.
 
 As mentioned, the app has two views.  View one retrieves data dynamically from the SBA's API via Kenneth Reitz's excellent _Requests_ library, and then cleans up the JSON and displays it as a list.  View two displays city info for a given county by querying a PostgreSQL database, which was populated with city info via manually leveraging a large JSON fixture--the fixture itself being created from the the same SBA API.
@@ -71,6 +72,10 @@ If you use a different e-mail provider than Gmail, you'll have to configure addi
 
 
 ------------------------------------------------------------------------
+=======
+##TECHNOLOGY STACK
+Django, mod_wsgi, and Apache installed on an AWS EC2 server (Ubuntu Precise 12.04-i386; ami-def89fb7) associated with an Elastic IP. PostgreSQL is the database used in both the development and production environment.  Style provided courtesy of Bootstrap. Validated HTML5/CSS3.
+>>>>>>> 2c6f06f4322a10aa7e893f25d36b9082b51f581a
 
 ##TODO
 -the virtualenv needs to be created with the --no-site-packages flag; this wasn't done on either the development machine nor the production machine, so the requirements.txt file may be a bit out of sync with regard to dependencies, and may require tweaking.
