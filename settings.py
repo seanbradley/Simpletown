@@ -94,6 +94,26 @@ MEDIA_URL = '/media/'
 ########## END MEDIA CONFIGURATION
 
 
+########## TEMPLATE CONFIGURATION
+# The order of things here is important.
+TEMPLATE_DIRS = (
+    normpath(join(SITE_ROOT, 'templates')),
+#    REGISTRATION_TEMPLATE_DIR,
+)
+
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+#    'django.template.loaders.eggs.Loader',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.request',
+    'django.contrib.auth.context_processors.auth'
+)
+########## END TEMPLATE CONFIGURATION
+
+
 ########## USER REGISTRATION / ACTIVATION CONFIGURATION
 ACCOUNT_ACTIVATION_DAYS = 7
 DEFAULT_FROM_EMAIL = 'webmaster@localhost'
@@ -137,26 +157,6 @@ INSTALLED_APPS = (
     #'kombu.transport.django' #to use, uncomment lines in CELERY CONFIGURATION below
 )
 ########## END APPS CONFIGURATION
-
-
-########## TEMPLATE CONFIGURATION
-# The order of things here is important.
-TEMPLATE_DIRS = (
-    normpath(join(SITE_ROOT, 'templates')),
-#    REGISTRATION_TEMPLATE_DIR,
-)
-
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-#    'django.template.loaders.eggs.Loader',
-)
-
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.core.context_processors.request',
-    'django.contrib.auth.context_processors.auth'
-)
-########## END TEMPLATE CONFIGURATION
 
 
 ########## CELERY CONFIGURATION
