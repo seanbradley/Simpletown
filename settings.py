@@ -82,10 +82,10 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'ubuntu',       # Or path to database file if using sqlite3.
+        'NAME': 'ubuntu',       # Or path to database file if using sqlite3
         'USER': 'ubuntu',       # Change this in the Postgres shell
-        'PASSWORD': 'ubuntu',   # Obviously, use a better password or environ variable for production...
-        'HOST': 'localhost',    # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PASSWORD': 'ubuntu',   # Obviously, use a better password or environ variable for production
+        'HOST': 'localhost',    # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP
         'PORT': '',             # Set to empty string for default.
     }
 }
@@ -187,7 +187,8 @@ SECRET_KEY = environ.get('SECRET_KEY')
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-#aws_instance = curl http://169.254.169.254/latest/meta-data/public-ipv4
+# Include in ALLOWED_HOSTS the IP returned from curl http://169.254.169.254/latest/meta-data/public-ipv4
+# Remove "*" to garner the security benefit of this setting
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", "*"]
 
 TIME_ZONE = 'America/Los_Angeles'
