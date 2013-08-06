@@ -201,7 +201,7 @@ USE_TZ = True
 
 
 ########## DEBUG CONFIGURATION
-DEBUG =  bool(os.environ.get('DEBUG', False))
+DEBUG =  False #bool(os.environ.get('DEBUG', False))
 #TEMPLATE_DEBUG = DEBUG
 
 '''
