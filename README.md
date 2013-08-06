@@ -70,14 +70,18 @@ You need to change ALLOWED_HOSTS to the URL for your individual AWS EC2 instance
 If you use a different e-mail provider than Gmail, you'll have to configure additional e-mail settings.
 
 
-##STATIC FILES
+##STATIC VS. MEDIA FILES
+In other web frameworks,  "media" directories are traditionally reserved for files uploaded by users, and "static" directories serve as the home for resources related to styling the site. Django has its own ideas about that, however... In any case, for Simpletown, _any_ file that has to do with the styling of the site is labeled as "static", and that's the directory in which you'll find it.
+
 Django can get rather nuanced with the way it deals with static files.  Particularly, it's careful with regard to namespacing of static files.
 
 See: https://docs.djangoproject.com/en/dev/ref/settings/#static-root
 And: https://docs.djangoproject.com/en/dev/howto/static-files/
 
 Typically, "manage.py collectstatic" gathers all static files included in STATICFILES_DIRS into the STATIC_ROOT directory.  Also, typically, STATIC_ROOT is called "assets".  But, for ease of this deployment, all
-the static and style-related files (except for admin styles) are already in one directory. So, we're pointing STATIC_ROOT to that directory.  It's presently set up like so, to enable the easy drop-in of separate stylesheets for the admin dashboard:
+the static and style-related files (except for admin styles) are already in one directory. So, we're pointing STATIC_ROOT to that directory.
+
+It's presently set up like so, to enable the easy drop-in of separate stylesheets for the admin dashboard:
 
 static
     site-styles
@@ -118,7 +122,3 @@ Unless required by applicable law or agreed to in writing, software distributed 
 ##CONTACT
 
 Your input is highly valued. Feel free to e-mail me directly and make suggestions or ask questions.  You can reach me via sean@blogblimp.com
-
-
-
-

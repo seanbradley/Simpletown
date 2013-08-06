@@ -38,25 +38,13 @@ SITE_ROOT = DJANGO_ROOT
 # Site name...
 SITE_NAME = basename(DJANGO_ROOT)
 
-# Add our project to our pythonpath, this way we don't need to type our project
-# name in our dotted import paths...
+# Add our project to our pythonpath, this way we don't need to type our
+# project name in our dotted import paths...
 path.append(DJANGO_ROOT)
 ########## END PATH CONFIGURATION
 
 
 ########## STATIC FILE CONFIGURATION
-# All style related docs are in here...
-
-# Django can get rather nuanced with the way it deals with static files.
-# Particularly, it's careful with regard to namespacing of static files.
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#static-root
-# And: https://docs.djangoproject.com/en/dev/howto/static-files/
-#
-# Note: Typically, "manage.py collectstatic" gathers all static files included
-# in STATICFILES_DIRS into the STATIC_ROOT directory...  Also, typically,
-# STATIC_ROOT is called "assets".  But, for ease of this deployment, all
-# the static and style-related files (except for admin styles) are already
-# in one directory. So, we're pointing STATIC_ROOT directly to that directory.
 #STATIC_ROOT = normpath(join(SITE_ROOT, 'static/site-styles'))
 STATIC_ROOT = os.environ.get('MEDIA_ROOT', os.path.join(SITE_ROOT, 'static/site-styles'))
 
@@ -81,10 +69,6 @@ STATICFILES_FINDERS = (
 
 
 ########## MEDIA CONFIGURATION
-# I usually reserve "media" directories for files uploaded by users,
-# and let static assets live specifically in directories named "static".
-# Django has its own ideas about that, however...
-
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#media-root
 #MEDIA_ROOT = normpath(join(SITE_ROOT, 'media'))
 MEDIA_ROOT = os.environ.get('MEDIA_ROOT', os.path.join(SITE_ROOT, 'media'))
