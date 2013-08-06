@@ -185,7 +185,8 @@ SECRET_KEY = environ.get('SECRET_KEY')
 # Include in ALLOWED_HOSTS the IP returned from curl http://169.254.169.254/latest/meta-data/public-ipv4
 # Remove "*" to garner the security benefit of this setting
 url = "http://169.254.169.254/latest/meta-data/public-ipv4"
-instance_ip = requests.get(url)
+r = requests.get(url)
+instance_ip = r.text
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", instance_ip]
 
 TIME_ZONE = 'America/Los_Angeles'
