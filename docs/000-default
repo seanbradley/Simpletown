@@ -1,0 +1,57 @@
+# APACHE CONFIG FILE FOR DJANGO -- /etc/apache2/sites-enabled/000-default
+
+<VirtualHost *:80>
+
+    ServerAdmin you@yourdomain.com
+    ServerName sb_biz
+
+    # You can set env vars here, and pull them into the application via wsgi.py
+    SetEnv SECRET_KEY your_secret_key_goes_here
+
+
+    # Settings for mod-wsgi and its daemon process...
+    ####################################################################
+
+    #Tell Apache where to find the wsgi file in Django...
+    WSGIScriptAlias / "/srv/django/sb_biz/wsgi.py"
+
+    #Set hosts in hosts file in /etc directory...
+    WSGIDaemonProcess ec2_instance user=ubuntu group=ubuntu processes=1 threads=10
+    WSGIProcessGroup ec2_instance
+
+    # Expose the wsgi config file's directory...
+    <Directory "/srv/django/sb_biz">
+        Order deny,allow
+        Allow from all
+    </Directory>
+
+
+    # Settings for /static and /media directories...
+    ####################################################################
+
+    Alias /static/ /srv/django/sb_biz/static/
+    Alias /media/ /srv/django/sb_biz/media/
+
+    <Directory "/srv/django/sb_biz/static">
+        Order deny,allow
+        Allow from all
+    </Directory>
+
+    <Directory "/srv/django/sb_biz/media">
+        Order deny,allow
+        Allow from all
+    </Directory>
+
+
+    # Settings for logging...
+    ####################################################################
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+
+    # Possible values include: debug, info, notice, warn, error, crit,
+    # alert, emerg.
+    LogLevel warn
+
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+</VirtualHost>
