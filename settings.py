@@ -1,10 +1,29 @@
-# Django settings
+# DJANGO SETTINGS
 
 import os, sys
 from os import environ
-from os.path import abspath, basename, dirname, join, normpath
-from sys import path
+from os.path import basename
+from unipath import Path
 
+
+########## PATH CONFIGURATION
+PROJECT_DIR = Path(__file__).ancestor(1)
+MEDIA_ROOT = PROJECT_DIR.child("media")
+STATIC_ROOT = PROJECT_DIR.child("static")
+STATICFILES_DIRS = (
+    PROJECT_DIR.child("styles"),
+)
+TEMPLATE_DIRS = (
+    PROJECT_DIR.child("templates"),
+)
+ROOT_URLCONF = 'urls'
+
+# Site name...
+SITE_NAME = basename(PROJECT_DIR)
+########## END PATH CONFIGURATION
+
+
+########## EXCEPTION HANDLING
 # Normally you should not import ANYTHING from Django directly into your
 # settings, but ImproperlyConfigured is an exception.
 from django.core.exceptions import ImproperlyConfigured
@@ -16,91 +35,31 @@ def get_env_setting(setting):
     except KeyError:
         error_msg = "Set the %s env variable" % setting
         raise ImproperlyConfigured(error_msg)
+########## END EXCEPTION HANDLING
 
 
-ADMINS = (
-    ('Your Name', 'you@yourdomain.com'),
-)
+########## MEDIA CONFIGURATION
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#media-url
+MEDIA_URL = '/media/'
 
-MANAGERS = ADMINS
+#ADMIN_MEDIA_PREFIX = ""
 
-ROOT_URLCONF = 'urls'
-
-
-########## PATH CONFIGURATION
-# Absolute filesystem path to the Django project directory...
-DJANGO_ROOT = dirname(abspath(__file__))
-
-# Absolute filesystem path to the top-level project folder...
-#SITE_ROOT = dirname(DJANGO_ROOT)
-SITE_ROOT = DJANGO_ROOT
-
-# Site name...
-SITE_NAME = basename(DJANGO_ROOT)
-
-# Add our project to our pythonpath, this way we don't need to type our project
-# name in our dotted import paths...
-path.append(DJANGO_ROOT)
-########## END PATH CONFIGURATION
+########## END MEDIA CONFIGURATION
 
 
 ########## STATIC FILE CONFIGURATION
-# All style related docs are in here...
-
-# Django can get rather nuanced with the way it deals with static files.
-# Particularly, it's careful with regard to namespacing of static files.
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#static-root
-# And: https://docs.djangoproject.com/en/dev/howto/static-files/
-#
-# Note: Typically, "manage.py collectstatic" gathers all static files included
-# in STATICFILES_DIRS into the STATIC_ROOT directory...  Also, typically,
-# STATIC_ROOT is called "assets".  But, for ease of this deployment, all
-# the static and style-related files (except for admin styles) are already
-# in one directory. So, we're pointing STATIC_ROOT directly to that directory.
-#STATIC_ROOT = normpath(join(SITE_ROOT, 'static/site-styles'))
-STATIC_ROOT = os.environ.get('MEDIA_ROOT', os.path.join(SITE_ROOT, 'static/site-styles'))
-
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
 STATIC_URL = '/static/'
 
-# See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
-STATICFILES_DIRS = (
-    normpath(join(SITE_ROOT, 'static')),
-)
-
-# See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
-
-#ADMIN_MEDIA_PREFIX = ""
-
 ########## END STATIC FILE CONFIGURATION
 
 
-########## MEDIA CONFIGURATION
-# I usually reserve "media" directories for files uploaded by users,
-# and let static assets live specifically in directories named "static".
-# Django has its own ideas about that, however...
-
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#media-root
-#MEDIA_ROOT = normpath(join(SITE_ROOT, 'media'))
-MEDIA_ROOT = os.environ.get('MEDIA_ROOT', os.path.join(SITE_ROOT, 'media'))
-
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#media-url
-MEDIA_URL = '/media/'
-########## END MEDIA CONFIGURATION
-
-
 ########## TEMPLATE CONFIGURATION
-# The order of things here is important.
-TEMPLATE_DIRS = (
-    normpath(join(SITE_ROOT, 'templates')),
-#    REGISTRATION_TEMPLATE_DIR,
-)
-
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
@@ -114,11 +73,18 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 ########## END TEMPLATE CONFIGURATION
 
 
-########## USER REGISTRATION / ACTIVATION CONFIGURATION
-ACCOUNT_ACTIVATION_DAYS = 7
-DEFAULT_FROM_EMAIL = 'webmaster@localhost'
-LOGIN_REDIRECT_URL = '/'
-########## END USER REGISTRATION / ACTIVATION CONFIGURATION
+########## DATABASE CONFIGURATION
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'ubuntu',       # Or path to database file if using sqlite3
+        'USER': 'ubuntu',       # Change this in the Postgres shell
+        'PASSWORD': 'ubuntu',   # Obviously, use a better password or environ variable for production
+        'HOST': 'localhost',    # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP
+        'PORT': '',             # Set to empty string for default.
+    }
+}
+########## END DATABASE CONFIGURATION
 
 
 ########## MIDDLEWARE CONFIGURATION
@@ -166,18 +132,20 @@ INSTALLED_APPS = (
 ########## END CELERY CONFIGURATION
 
 
-########## DATABASE CONFIGURATION
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'ubuntu',       # Or path to database file if using sqlite3.
-        'USER': 'ubuntu',
-        'PASSWORD': 'ubuntu',   # Obviously, use a better password or environ variable for production...
-        'HOST': 'localhost',    # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',             # Set to empty string for default.
-    }
-}
-########## END DATABASE CONFIGURATION
+########## ADMNISTRATORS
+ADMINS = (
+    ('Your Name', 'you@yourdomain.com'),
+)
+
+MANAGERS = ADMINS
+########## END ADMNISTRATORS
+
+
+########## USER REGISTRATION / ACTIVATION CONFIGURATION
+ACCOUNT_ACTIVATION_DAYS = 7
+DEFAULT_FROM_EMAIL = 'webmaster@localhost'
+LOGIN_REDIRECT_URL = '/'
+########## END USER REGISTRATION / ACTIVATION CONFIGURATION
 
 
 ########## EMAIL CONFIGURATION
@@ -214,8 +182,9 @@ SECRET_KEY = environ.get('SECRET_KEY')
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-#aws_instance = curl http://169.254.169.254/latest/meta-data/public-ipv4
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "*", "23.21.214.134"]
+# Include in ALLOWED_HOSTS the IP returned from curl http://169.254.169.254/latest/meta-data/public-ipv4
+# Remove "*" to garner the security benefit of this setting
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "*"]
 
 TIME_ZONE = 'America/Los_Angeles'
 
