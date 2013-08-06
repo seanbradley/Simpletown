@@ -41,12 +41,12 @@ http://bruno.im/2013/may/18/django-stop-writing-settings-files/
 
 In the settings.py, you will need to change the following after launch...
 
--ADMINS
--SECRET_KEY
--ALLOWED_HOSTS
--EMAIL_HOST_PASSWORD
--EMAIL_HOST_USER
--DEBUG
+*ADMINS
+*SECRET_KEY
+*ALLOWED_HOSTS
+*EMAIL_HOST_PASSWORD
+*EMAIL_HOST_USER
+*DEBUG
 
 
 Set DEBUG as an environment variable, like so...
@@ -58,7 +58,9 @@ following in ~/.bashrc, like so:
 
     DEBUG = 'True'
 
-Remember to "touch .bashrc" after doing so.
+After adjusting this setting, remember to...
+
+    touch .bashrc
 
 You also need to set an original SECRET_KEY
 
