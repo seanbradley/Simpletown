@@ -4,6 +4,7 @@ import os, sys
 from os import environ
 from os.path import basename
 from unipath import Path
+import requests
 
 
 ########## PATH CONFIGURATION
@@ -116,7 +117,6 @@ INSTALLED_APPS = (
     'cities'
     # Some add'l useful apps you might want to install if using SIMPLETOWN'S FAST LANE AMI
     #'django.contrib.admindocs',
-    #'registration_defaults',  #to use, may need to uncomment REGISTRATION_TEMPLATE_DIR below
     #'debug_toolbar', #to use, uncomment appropriate lines in DEBUG CONFIGURATION below
     #'django-extensions', #to use, just uncomment this line
     #'djcelery'  #to use, uncomment lines in CELERY CONFIGURATION below
@@ -184,7 +184,9 @@ SECRET_KEY = environ.get('SECRET_KEY')
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
 # Include in ALLOWED_HOSTS the IP returned from curl http://169.254.169.254/latest/meta-data/public-ipv4
 # Remove "*" to garner the security benefit of this setting
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "*"]
+url = "http://169.254.169.254/latest/meta-data/public-ipv4"
+instance_ip = requests.get(url)
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", instance_ip]
 
 TIME_ZONE = 'America/Los_Angeles'
 

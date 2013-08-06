@@ -47,7 +47,7 @@ In the settings.py, you will need to change the following after launch...
 * DEBUG
 
 
-Set DEBUG as an environment variable, like so...
+Set DEBUG as an environment variable on your development machine, like so...
 
     DEBUG="True"; export DEBUG
 
@@ -70,11 +70,15 @@ If you use a different e-mail provider than Gmail, you'll have to configure addi
 
 
 ###STATIC ASSETS VS. MEDIA FILES
-As in other web frameworks,  "media" directories are traditionally reserved for files uploaded by users, and "static" is the label applied to resources related to styling the site. Django has its own conventions in this regard, and can get rather nuanced in its efforts to keep things tidy and loosely coupled between "apps" within a single overarching project.  Particularly, it's careful with regard to namespacing of static files, so that each Django app within a project can contain its own static assets (i.e., css, js, and img files).  Django provides a convenience function--_collectstatic_--to gather all of these resources into a common directory (the "static" directory) and to reference them via a common URL.  (See: <https://docs.djangoproject.com/en/dev/howto/static-files/>)
+As in other web frameworks,  "media" directories are traditionally reserved for files uploaded by users, and "static" is the label applied to resources related to styling the site. Django has its own conventions in this regard, and can get rather nuanced in its efforts to keep things tidy and loosely coupled between "apps" within a single overarching project.  Particularly, it's careful with regard to namespacing of static files, so that each Django app within a project can contain its own static assets (i.e., css, js, and img files) without name conflicts.  Django provides a convenience function--_collectstatic_--to gather all of these resources into a common directory (the "static" directory) and to reference them via a common URL.  (See: <https://docs.djangoproject.com/en/dev/howto/static-files/>)
 
-Many beginning Djangonauts find this process and its nomenclature a bit confusing.  Simpletown follows the convention of most Python and other web frameworks: it simply places all style related assets into one directory from the get go.  _Any_ file that has to do with styling of the site is labeled as "styles", and that's the directory in which you'll find it.  The "static" directory is empty--intentionally so--and should be left empty.  Manually placing files in the "static" directory will raise an ImproperlyConfigured exception.
+Many beginning Djangonauts find this process and its nomenclature a bit confusing.  Simpletown follows the convention of most Python and other web frameworks: it simply places all style related assets into one directory from the get go.  _Any_ file that has to do with styling of the site is labeled as "styles", and that's the directory in which you'll find it.  The "static" directory is empty--intentionally so--and should be left empty.  Manually placing files in the "static" directory will raise an ImproperlyConfigured exception. Presently, executing this command...
 
-For style related assets, Simpletown provides the following directories...
+    ./manage.py collectstatic
+
+...is still required to gather assets in the STYLE directory to the STATIC directory, and serve them up via the appropriate URL.
+
+For styling related assets, Simpletown provides the following directories...
 
 styles<br />
 ....site-styles<br />
