@@ -41,12 +41,12 @@ Code is opinionated.  Here's an alternative to the above by Bruno Renié:
 
 In the settings.py, you will need to change the following after launch...
 
-*ADMINS
-*SECRET_KEY
-*ALLOWED_HOSTS
-*EMAIL_HOST_PASSWORD
-*EMAIL_HOST_USER
-*DEBUG
+* ADMINS
+* SECRET_KEY
+* ALLOWED_HOSTS
+* EMAIL_HOST_PASSWORD
+* EMAIL_HOST_USER
+* DEBUG
 
 
 Set DEBUG as an environment variable, like so...
