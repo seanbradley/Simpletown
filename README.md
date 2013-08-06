@@ -3,7 +3,7 @@
 
 
 ##TECHNOLOGY STACK
-Django, mod_wsgi, and Apache installed on an AWS EC2 server (Ubuntu Precise 12.04-i386; ami-def89fb7) associated with an Elastic IP. PostgreSQL is the database used in both the development and production environment.  Style provided courtesy of Bootstrap.
+Django, mod_wsgi, and Apache installed on an AWS EC2 server (Ubuntu Precise 12.04-i386; ami-def89fb7) associated with an Elastic IP. PostgreSQL is the database used in both the development and production environment.  Style provided courtesy of Bootstrap.  Validated HTML5/CSS3.
 
 You can see a live example of the site at:
 
@@ -14,13 +14,12 @@ Password = ubuntu
 
 
 ##ABOUT SIMPLETOWN
-This app was actually a technical interview.  The task: code from scratch a Django driven site with two views--one view that pulls in data from  a third-party API; another view with pulls in data from the app's own database.  Develop, and then deploy the whole thing on an AWS Linux instance within 24-hours.
+This app was actually a technical interview.  The task: code from scratch a Django driven site with two views--one view that pulls in data from  a third-party API; another view with pulls in data from the app's own database.  Develop, integrate version control, and then deploy the whole thing on an AWS Linux instance within 24-hours.
 
 _Voila'._  I give you Simpletown.
 
 As such, Simpletown serves as a minimal, barebones example of a Django implementation that fetches data from an external resource. It taps an API provided by the Small Business Admnistration (SBA), which provides US Geographic Survey city names and associated data (e.g., County, State, Latitude, and Longitude) in JSON format.  See http://www.sba.gov/about-sba-services/7617 for more info about the API.
 
-<<<<<<< HEAD
 The project is laid out so that the <repository_root> and <django_project_root> are the same.
 
 As mentioned, the app has two views.  View one retrieves data dynamically from the SBA's API via Kenneth Reitz's excellent _Requests_ library, and then cleans up the JSON and displays it as a list.  View two displays city info for a given county by querying a PostgreSQL database, which was populated with city info via manually leveraging a large JSON fixture--the fixture itself being created from the the same SBA API.
@@ -71,11 +70,25 @@ You need to change ALLOWED_HOSTS to the URL for your individual AWS EC2 instance
 If you use a different e-mail provider than Gmail, you'll have to configure additional e-mail settings.
 
 
-------------------------------------------------------------------------
-=======
-##TECHNOLOGY STACK
-Django, mod_wsgi, and Apache installed on an AWS EC2 server (Ubuntu Precise 12.04-i386; ami-def89fb7) associated with an Elastic IP. PostgreSQL is the database used in both the development and production environment.  Style provided courtesy of Bootstrap. Validated HTML5/CSS3.
->>>>>>> 2c6f06f4322a10aa7e893f25d36b9082b51f581a
+##STATIC FILES
+Django can get rather nuanced with the way it deals with static files.  Particularly, it's careful with regard to namespacing of static files.
+
+See: https://docs.djangoproject.com/en/dev/ref/settings/#static-root
+And: https://docs.djangoproject.com/en/dev/howto/static-files/
+
+Typically, "manage.py collectstatic" gathers all static files included in STATICFILES_DIRS into the STATIC_ROOT directory.  Also, typically, STATIC_ROOT is called "assets".  But, for ease of this deployment, all
+the static and style-related files (except for admin styles) are already in one directory. So, we're pointing STATIC_ROOT to that directory.  It's presently set up like so, to enable the easy drop-in of separate stylesheets for the admin dashboard:
+
+static
+    site-styles
+        css
+        img
+        js
+    admin-styles
+        css
+        img
+        js
+
 
 ##TODO
 -the virtualenv needs to be created with the --no-site-packages flag; this wasn't done on either the development machine nor the production machine, so the requirements.txt file may be a bit out of sync with regard to dependencies, and may require tweaking.
