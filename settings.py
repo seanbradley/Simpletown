@@ -3,7 +3,6 @@
 import os, sys
 from os import environ
 from os.path import basename
-from sys import path
 from unipath import Path
 
 
@@ -21,10 +20,6 @@ ROOT_URLCONF = 'urls'
 
 # Site name...
 SITE_NAME = basename(PROJECT_DIR)
-
-# Add our project to our pythonpath, this way we don't need to type our
-# project name in our dotted import paths...
-path.append(PROJECT_DIR)
 ########## END PATH CONFIGURATION
 
 

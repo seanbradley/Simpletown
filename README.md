@@ -25,8 +25,8 @@ The project is laid out so that the <repository_root> and <django_project_root> 
 As mentioned, the app has two views.  View one retrieves data dynamically from the SBA's API via Kenneth Reitz's excellent _Requests_ library, and then cleans up the JSON and displays it as a list.  View two displays city info for a given county by querying a PostgreSQL database, which was populated with city info via manually leveraging a large JSON fixture--the fixture itself being created from the the same SBA API.
 
 
-###USE SIMPLETOWN'S "FAST LANE" AMI FOR RAPID AND EASY DEPLOYMENT
-Your own copy of Simpletown is available and instantly deployable in less than five minutes if you purchase its Amazon Machine Image (AMI)...which is available for just $5.  Save yourself the headache of backwards engineering the site from this repo; fahgeddabout configuring Apache and mod_wsgi. For the price of your carmel mocha machiatto (or a Redbull and Top Ramen), you can get past the boring Advil-laden part of deployment, and jump right into writing new models and views, and styling your Django app as you see fit. Everything but e-mail settings are automagically configured for you in the FAST LANE AMI.
+###USE SIMPLETOWN'S "FAST LANE" AMI FOR A RAPID LAUNCH
+Your own copy of Simpletown is available and instantly deployable in less than five minutes if you purchase its Amazon Machine Image (AMI)...which is available for a one-time fee of just $5.  Save yourself the headache of backwards engineering the site from this repo; fahgeddabout configuring Apache and mod_wsgi. For the price of your carmel mocha machiatto (or a Redbull and Top Ramen), you can get past the boring Advil-laden part of deployment, and jump right into writing new models, new views, and styling your Django app as you see fit. Everything but e-mail settings are automagically configured for you in the FAST LANE AMI.
 
 
 ###STANDARD DEPLOYMENT
@@ -71,21 +71,14 @@ You need to change ALLOWED_HOSTS to the URL for your individual AWS EC2 instance
 If you use a different e-mail provider than Gmail, you'll have to configure additional e-mail settings.
 
 
-###STATIC VS. MEDIA FILES
-In other web frameworks,  "media" directories are traditionally reserved for files uploaded by users, and "static" directories serve as the home for resources related to styling the site. Django has its own ideas about that, however... In any case, for Simpletown, _any_ file that has to do with the styling of the site is labeled as "static", and that's the directory in which you'll find it.
+###STATIC ASSETS VS. MEDIA FILES
+As in other web frameworks,  "media" directories are traditionally reserved for files uploaded by users, and "static" is the label applied to resources related to styling the site. Django has its own conventions in this regard, and can get rather nuanced in its efforts to keep things tidy and loosely coupled between "apps" within a single overarching project.  Particularly, it's careful with regard to namespacing of static files, so that each Django app within a project can contain its own static assets (i.e., css, js, and img files).  Django provides a convenience function--_collectstatic_--to gather all of these resources into a common directory (the "static" directory) and to reference them via a common URL.  (See: <https://docs.djangoproject.com/en/dev/howto/static-files/>)
 
-Django can get rather nuanced with the way it deals with static files.  Particularly, it's careful with regard to namespacing of static files.
+Many beginning Djangonauts find this process and its nomenclature a bit confusing.  Simpletown follows the convention of most Python and other web frameworks: it simply places all style related assets into one directory from the get go.  _Any_ file that has to do with styling of the site is labeled as "styles", and that's the directory in which you'll find it.  The "static" directory is empty--intentionally so--and should be left empty.  Manually placing files in the "static" directory will raise an ImproperlyConfigured exception.
 
-See: <https://docs.djangoproject.com/en/dev/ref/settings/#static-root>
+For style related assets, Simpletown provides the following directories...
 
-And: <https://docs.djangoproject.com/en/dev/howto/static-files/>
-
-Typically, "manage.py collectstatic" gathers all static files included in STATICFILES_DIRS into the STATIC_ROOT directory.  Also, typically, STATIC_ROOT is called "assets".  But, for ease of this deployment, all
-the static and style-related files (except for admin styles) are already in one directory. So, we're pointing STATIC_ROOT to that directory.
-
-It's presently set up like so, to enable the easy drop-in of separate stylesheets for the admin dashboard:
-
-static<br />
+styles<br />
 ....site-styles<br />
 ........css<br />
 ........img<br />
