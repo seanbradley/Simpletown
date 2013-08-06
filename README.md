@@ -31,13 +31,13 @@ Your own copy of Simpletown is available and instantly deployable in less than f
 
 ##STANDARD DEPLOYMENT
 For best practices with regard to setting up your Django app see the _Two Scoops of Django_ project template and the associated book by Danny Greenfield and Audrey Roy:
-https://github.com/twoscoops/django-twoscoops-project
+(https://github.com/twoscoops/django-twoscoops-project)
 
 With regard to app config, check out _The One True Way_ by Jacob Kaplan Moss:
-https://speakerdeck.com/jacobian/the-best-and-worst-of-django?slide=81
+(https://speakerdeck.com/jacobian/the-best-and-worst-of-django?slide=81)
 
 Code is opinionated.  Here's an alternative to the above by Bruno Renié:
-http://bruno.im/2013/may/18/django-stop-writing-settings-files/
+(http://bruno.im/2013/may/18/django-stop-writing-settings-files/)
 
 In the settings.py, you will need to change the following after launch...
 
@@ -64,10 +64,9 @@ After adjusting this setting, remember to...
 
 You also need to set an original SECRET_KEY
 
- ...and...
+...and...
 
 You need to change ALLOWED_HOSTS to the URL for your individual AWS EC2 instance, or to an AWS Elastic IP, or your actual custom domain.
-
 
 If you use a different e-mail provider than Gmail, you'll have to configure additional e-mail settings.
 
@@ -77,8 +76,9 @@ In other web frameworks,  "media" directories are traditionally reserved for fil
 
 Django can get rather nuanced with the way it deals with static files.  Particularly, it's careful with regard to namespacing of static files.
 
-See: https://docs.djangoproject.com/en/dev/ref/settings/#static-root
-And: https://docs.djangoproject.com/en/dev/howto/static-files/
+See: (https://docs.djangoproject.com/en/dev/ref/settings/#static-root)
+
+And: (https://docs.djangoproject.com/en/dev/howto/static-files/)
 
 Typically, "manage.py collectstatic" gathers all static files included in STATICFILES_DIRS into the STATIC_ROOT directory.  Also, typically, STATIC_ROOT is called "assets".  But, for ease of this deployment, all
 the static and style-related files (except for admin styles) are already in one directory. So, we're pointing STATIC_ROOT to that directory.
@@ -86,20 +86,20 @@ the static and style-related files (except for admin styles) are already in one 
 It's presently set up like so, to enable the easy drop-in of separate stylesheets for the admin dashboard:
 
 static
-    site-styles
-        css
-        img
-        js
-    admin-styles
-        css
-        img
-        js
+....site-styles
+........css
+........img
+........js
+....admin-styles
+........css
+........img
+........js
 
 
 ##TODO
--the virtualenv needs to be created with the --no-site-packages flag; this wasn't done on either the development machine nor the production machine, so the requirements.txt file may be a bit out of sync with regard to dependencies, and may require tweaking.
--view_one loads slowly; page caching helps after the page loads the first time, but perhaps it'd be nicer if the data were fetched asynchronously while displaying a throbber or progress bar.
--minor performance improvements might be enabled if static files were moved to S3 and retrieved from CloudFront CDN.
+*the virtualenv needs to be created with the --no-site-packages flag; this wasn't done on either the development machine nor the production machine, so the requirements.txt file may be a bit out of sync with regard to dependencies, and may require tweaking.
+*view_one loads slowly; page caching helps after the page loads the first time, but perhaps it'd be nicer if the data were fetched asynchronously while displaying a throbber or progress bar.
+*minor performance improvements might be enabled if static files were moved to S3 and retrieved from CloudFront CDN.
 
 
 ------------------------------------------------------------------------
