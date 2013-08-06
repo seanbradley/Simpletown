@@ -3,7 +3,7 @@
 
 
 ###TECHNOLOGY STACK
-Django, mod_wsgi, and Apache installed on an AWS EC2 server (Ubuntu Precise 12.04-i386) associated with an Elastic IP. PostgreSQL is the database used in both the development and production environment.  Style provided courtesy of Bootstrap.  Validated HTML5/CSS3.
+Django, mod_wsgi, and Apache installed on an AWS EC2 server (Ubuntu Precise 12.04-i386) associated with an Elastic IP. PostgreSQL is the database used in both development and production.  Style provided courtesy of Bootstrap.  Validated HTML5/CSS3.
 
 You can see a live example of the site at:
 
@@ -14,13 +14,11 @@ You can see a live example of the site at:
 
 
 ###ABOUT SIMPLETOWN
-This app was actually a technical interview.  The task: code from scratch a Django driven site with two views--one view that pulls in data from  a third-party API; another view with pulls in data from the app's own database.  Develop, integrate version control, and then deploy the whole thing on an AWS Linux instance within 24-hours.
+This app evolved out of a technical interview.  The task: code from scratch a Django driven site with two views--one view that pulls in data from  a third-party API; another view with pulls in data from the app's own database.  Develop, integrate version control, and then deploy the whole thing on an AWS Linux instance within 24-hours.
 
 _Voila'._  I give you Simpletown.
 
-As such, Simpletown serves as a minimal, barebones example of a Django implementation that fetches data from an external resource. It taps an API provided by the Small Business Admnistration (SBA), which provides US Geographic Survey city names and associated data (e.g., County, State, Latitude, and Longitude) in JSON format.  See <http://www.sba.gov/about-sba-services/7617> for more info about the API.
-
-The project is laid out so that the <repository_root> and <django_project_root> are the same.
+**Simpletown serves as a minimal, barebones example of a Django implementation that fetches data from an external resource.** It taps an API provided by the Small Business Admnistration (SBA), which provides US Geographic Survey city names and associated data (e.g., County, State, Latitude, and Longitude) in JSON format.  See <http://www.sba.gov/about-sba-services/7617> for more info about the API.
 
 As mentioned, the app has two views.  View one retrieves data dynamically from the SBA's API via Kenneth Reitz's excellent _Requests_ library, and then cleans up the JSON and displays it as a list.  View two displays city info for a given county by querying a PostgreSQL database, which was populated with city info via manually leveraging a large JSON fixture--the fixture itself being created from the the same SBA API.
 
