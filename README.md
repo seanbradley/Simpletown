@@ -7,7 +7,7 @@ Django, mod_wsgi, and Apache installed on an AWS EC2 server (Ubuntu Precise 12.0
 
 You can see a live example of the site at:
 
-http://23.21.214.134/
+<http://23.21.214.134/>
 
 Username = ubuntu
 Password = ubuntu
@@ -31,13 +31,13 @@ Your own copy of Simpletown is available and instantly deployable in less than f
 
 ##STANDARD DEPLOYMENT
 For best practices with regard to setting up your Django app see the _Two Scoops of Django_ project template and the associated book by Danny Greenfield and Audrey Roy:
-(https://github.com/twoscoops/django-twoscoops-project)
+<https://github.com/twoscoops/django-twoscoops-project>
 
 With regard to app config, check out _The One True Way_ by Jacob Kaplan Moss:
-(https://speakerdeck.com/jacobian/the-best-and-worst-of-django?slide=81)
+<https://speakerdeck.com/jacobian/the-best-and-worst-of-django?slide=81>
 
 Code is opinionated.  Here's an alternative to the above by Bruno Renié:
-(http://bruno.im/2013/may/18/django-stop-writing-settings-files/)
+<http://bruno.im/2013/may/18/django-stop-writing-settings-files/>
 
 In the settings.py, you will need to change the following after launch...
 
@@ -76,24 +76,24 @@ In other web frameworks,  "media" directories are traditionally reserved for fil
 
 Django can get rather nuanced with the way it deals with static files.  Particularly, it's careful with regard to namespacing of static files.
 
-See: (https://docs.djangoproject.com/en/dev/ref/settings/#static-root)
+See: <https://docs.djangoproject.com/en/dev/ref/settings/#static-root>
 
-And: (https://docs.djangoproject.com/en/dev/howto/static-files/)
+And: <https://docs.djangoproject.com/en/dev/howto/static-files/>
 
 Typically, "manage.py collectstatic" gathers all static files included in STATICFILES_DIRS into the STATIC_ROOT directory.  Also, typically, STATIC_ROOT is called "assets".  But, for ease of this deployment, all
 the static and style-related files (except for admin styles) are already in one directory. So, we're pointing STATIC_ROOT to that directory.
 
 It's presently set up like so, to enable the easy drop-in of separate stylesheets for the admin dashboard:
 
-static
-....site-styles
-........css
-........img
-........js
-....admin-styles
-........css
-........img
-........js
+static<br />
+....site-styles<br />
+........css<br />
+........img<br />
+........js<br />
+....admin-styles<br />
+........css<br />
+........img<br />
+........js<br />
 
 
 ##TODO
