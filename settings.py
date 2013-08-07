@@ -182,8 +182,6 @@ SECRET_KEY = environ.get('SECRET_KEY')
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-# Include in ALLOWED_HOSTS the IP returned from curl http://169.254.169.254/latest/meta-data/public-ipv4
-# Remove "*" to garner the security benefit of this setting
 url = "http://169.254.169.254/latest/meta-data/public-ipv4"
 r = requests.get(url)
 instance_ip = r.text
