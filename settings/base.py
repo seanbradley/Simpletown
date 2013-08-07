@@ -1,14 +1,13 @@
-# DJANGO SETTINGS
+# DJANGO BASE SETTINGS
 
 import os, sys
 from os import environ
 from os.path import basename
 from unipath import Path
-import requests
 
 
 ########## PATH CONFIGURATION
-PROJECT_DIR = Path(__file__).ancestor(1)
+PROJECT_DIR = Path(__file__).ancestor(2)
 MEDIA_ROOT = PROJECT_DIR.child("media")
 STATIC_ROOT = PROJECT_DIR.child("static")
 STATICFILES_DIRS = (
@@ -117,7 +116,6 @@ INSTALLED_APPS = (
     'cities'
     # Some add'l useful apps you might want to install if using SIMPLETOWN'S FAST LANE AMI
     #'django.contrib.admindocs',
-    #'debug_toolbar', #to use, uncomment appropriate lines in DEBUG CONFIGURATION below
     #'django-extensions', #to use, just uncomment this line
     #'djcelery'  #to use, uncomment lines in CELERY CONFIGURATION below
     #'kombu.transport.django' #to use, uncomment lines in CELERY CONFIGURATION below
@@ -152,17 +150,11 @@ LOGIN_REDIRECT_URL = '/'
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#email-host
-EMAIL_HOST = environ.get('EMAIL_HOST', 'smtp.gmail.com')
-
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#email-host-password
 EMAIL_HOST_PASSWORD = environ.get('EMAIL_HOST_PASSWORD', '')
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#email-host-user
 EMAIL_HOST_USER = environ.get('EMAIL_HOST_USER', '')
-
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#email-port
-EMAIL_PORT = environ.get('EMAIL_PORT', 587)
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#email-subject-prefix
 EMAIL_SUBJECT_PREFIX = '[%s] ' % SITE_NAME
@@ -182,45 +174,37 @@ SECRET_KEY = environ.get('SECRET_KEY')
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-url = "http://169.254.169.254/latest/meta-data/public-ipv4"
-r = requests.get(url)
-instance_ip = r.text
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", instance_ip]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
+# Local time zone for this installation. Choices can be found here:
+# http://en.wikipedia.org/wiki/List_of_tz_zones_by_name although not all
+# choices may be available on all operating systems. On Unix systems, a value
+# of None will cause Django to use the same timezone as the operating system.
+# If running in a Windows environment this must be set to the same as your
+# system time zone.
 TIME_ZONE = 'America/Los_Angeles'
 
+# Language code for this installation. All choices can be found here:
+# http://www.i18nguy.com/unicode/language-identifiers.html.
 LANGUAGE_CODE = 'en-us'
 
+# The ID, as an integer, of the current site in the django_site database table.
+# This is used so that application data can hook into specific site(s) and a
+# single database can manage content for multiple sites.
 SITE_ID = 1
 
-USE_I18N = True
+# If you set this to False, Django will make some optimizations so as not
+# to load the internationalization machinery.
+USE_I18N = False
 
+# If you set this to False, Django will not format dates, numbers and
+# calendars according to the current locale.
 USE_L10N = True
-
-USE_TZ = True
 ########## END MISC SETTINGS
 
 
 ########## DEBUG CONFIGURATION
 DEBUG =  bool(os.environ.get('DEBUG', False))
-
-# Uncomment the following line to debug templates; do not use in production
-#TEMPLATE_DEBUG = DEBUG
-
-# Uncomment the following chunk of code (and the associated INSTALLED_APP)
-# to use the Django-Toolbar debugger...
-'''
-# See: https://github.com/django-debug-toolbar/django-debug-toolbar#installation
-MIDDLEWARE_CLASSES += (
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
-)
-
-# See: https://github.com/django-debug-toolbar/django-debug-toolbar#installation
-DEBUG_TOOLBAR_CONFIG = {
-    'INTERCEPT_REDIRECTS': False,
-    'SHOW_TEMPLATE_CONTEXT': True,
-}
-'''
 ########## END DEBUG CONFIGURATION
 
 
