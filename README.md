@@ -23,7 +23,7 @@ _Voila'._  I give you Simpletown.
 As mentioned, the app has two views.  View one retrieves data dynamically from the SBA's API via Kenneth Reitz's excellent _Requests_ library, and then cleans up the JSON and displays it as a list.  View two displays city info for a given county by querying a PostgreSQL database, which was populated with city info via manually leveraging a large JSON fixture--the fixture itself being created from the the same SBA API.
 
 
-###USE SIMPLETOWN'S "FAST LANE" AMI FOR A RAPID LAUNCH
+###"FAST LANE" AMI FOR A RAPID LAUNCH (COMING SOON!)
 Your own copy of Simpletown is available and instantly deployable in less than five minutes if you purchase its Amazon Machine Image (AMI)...which is available for a one-time fee of just $5.  Save yourself the headache of backwards engineering the site from this repo; fahgeddabout configuring Apache and mod_wsgi. For the price of your carmel mocha machiatto (or a Redbull and Top Ramen), you can get past the boring Advil-laden part of deployment, and jump right into writing new models, new views, and styling your Django app as you see fit. Everything but e-mail settings are automagically configured for you in the FAST LANE AMI.
 
 
@@ -31,11 +31,15 @@ Your own copy of Simpletown is available and instantly deployable in less than f
 For best practices with regard to setting up your Django app see the _Two Scoops of Django_ project template and the associated book by Danny Greenfield and Audrey Roy:
 <https://github.com/twoscoops/django-twoscoops-project>
 
-With regard to app config, check out _The One True Way_ by Jacob Kaplan Moss:
+####SETTINGS
+With regard to Django settings, check out _The One True Way_ by Jacob Kaplan Moss:
 <https://speakerdeck.com/jacobian/the-best-and-worst-of-django?slide=81>
 
 Code is opinionated.  Here's an alternative to the above by Bruno Renié:
 <http://bruno.im/2013/may/18/django-stop-writing-settings-files/>
+
+Simpletown's settings live in the _settings_ directory with separate files providing settings common to all environments (_base.py_), as well as files providing settings unique to development (_dev.py_), and production (_prod.py_) environments.  Most settings are handled in this manner in accord with Kaplan Moss' "One True Way", but some are managed via environment variables and/or envdir in the manner prescribed by Renié.  Some environment variables are also managed by inclusion in the Apache config file, and yet others are generated dynamically when needed.  Simpletown's settings are still being optimized with the intent of enabling the aforementioned "Fast Lane" deployment on AWS, and--in the interim--some environment variables may need to be set manually.
+
 
 You will need to change the following after launch...
 
@@ -48,9 +52,8 @@ In your Apache config file of your production machine, and the .bashrc of
 your development machine...
 * SECRET_KEY
 
-In the .bashrc of your development machine...
+In the .bashrc of your development machine only...
 * DEBUG
-
 
 Set the SECRET_KEY and DEBUG as an environment variable on your development machine, like so...
 
@@ -68,12 +71,11 @@ After adjusting these settings, remember to...
 
 If you're using a virtualenv--and you should-- _and_ you plan on running multiple environments on the same machine, you can place the above environment variable settings in your _bin/activate script_.  If you don't plan on running multiple environments on the same machine, just stick with placing the settings in the  _.bashrc_ file of your home directory.
 
-Finally, i6
-f you use a different e-mail provider than Gmail, you'll have to provide additional e-mail info in Django's settings file.
+Finally, if you use a different e-mail provider than Gmail, you'll have to provide additional e-mail info in Django's settings file.
 
 
 ###STATIC ASSETS VS. MEDIA FILES
-As in other web frameworks,  "media" directories are traditionally reserved for files uploaded by users, and "static" is the label applied to resources related to styling the site. Django has its own conventions in this regard, and can get rather nuanced in its efforts to keep things tidy and loosely coupled between "apps" within a single overarching project.  Particularly, it's careful with regard to namespacing of static files, so that each Django app within a project can contain its own static assets (i.e., css, js, and img files) without name conflicts.  Django provides a convenience function--_collectstatic_--to gather all of these resources into a common directory (the "static" directory) and to reference them via a common URL.  (See: <https://docs.djangoproject.com/en/dev/howto/static-files/>)
+As in other web frameworks,  "media" directories are traditionally reserved for files uploaded by users, and "static" is the label applied to resources related to styling the site. Django has its own conventions in thiregard, and can get rather nuanced in its efforts to keep things tidy and loosely coupled between "apps" within a single overarching project.  Particularly, it's careful with regard to namespacing of static files, so that each Django app within a project can contain its own static assets (i.e., css, js, and img files) without name conflicts.  Django provides a convenience function--_collectstatic_--to gather all of these resources into a common directory (the "static" directory) and to reference them via a common URL.  (See: <https://docs.djangoproject.com/en/dev/howto/static-files/>)
 
 Many beginning Djangonauts find this process and its nomenclature a bit confusing.  Simpletown follows the convention of most Python and other web frameworks: it simply places all style related assets into one directory from the get go.  _Any_ file that has to do with styling of the site is labeled as "styles", and that's the directory in which you'll find it.  The "static" directory is empty--intentionally so--and should be left empty.  Manually placing files in the "static" directory will raise an ImproperlyConfigured exception. Presently, executing this command...
 
