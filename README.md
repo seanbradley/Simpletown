@@ -2,8 +2,10 @@
 ####a lightweight Django app fetching JSON data from an external API
 
 
-###TECHNOLOGY STACK
-Django, mod_wsgi, and Apache installed on an AWS EC2 server (Ubuntu Precise 12.04-i386) associated with an Elastic IP. PostgreSQL is the database used in both development and production.  Style provided courtesy of Bootstrap.  Validated HTML5/CSS3.
+
+
+###ABOUT SIMPLETOWN
+Set up camp on AWS with Django in five minutes or less...
 
 You can see a live example of the site at:
 
@@ -12,24 +14,26 @@ You can see a live example of the site at:
 * Username = ubuntu
 * Password = ubuntu
 
+If you want a smart barebones project skeleton for your first or your next Django project, especially with **Heroku** in mind, then checkout [django-skel] (https://github.com/rdegges/django-skel) and/or [django-twoscoops-project] (https://github.com/seanbradley/django-twoscoops-project).
 
-###ABOUT SIMPLETOWN
-This app evolved out of a technical interview.  The task: code from scratch a Django driven site with two views--one view that pulls in data from  a third-party API; another view with pulls in data from the app's own database.  Develop, integrate version control, and then deploy the whole thing on an AWS Linux instance within 24-hours.
+If, however, you are new to Django, and/or new to deploying Python frameworks on **AWS**, then you may need a little more meat on dem bones to get started.  If so, Simpletown is for you. Simpletown not only clearly hints at best practices, but provides everything you need to launch a complete--albeit minimal and easy to wrangle--Django project on one of Amazon's EC2 instances.  Simpletown comes not only with a few nicities for deploying on AWS, but also with two example views--easy-to-understand functional views--one of which fetches resources from an external API.
+
+The project evolved out of a technical interview.  The challenge: code from scratch a Django driven site with the aformentioned views requisite to the task. Develop, integrate version control, and then deploy the whole thing on an AWS Linux instance.  Do this within 24-hours.
+
+I'd rather do it in 5 minutes.
 
 _Voila'._  I give you Simpletown.
 
-**Simpletown serves as a minimal, barebones example of a Django implementation that fetches data from an external resource.** It taps an API provided by the Small Business Admnistration (SBA), which provides US Geographic Survey city names and associated data (e.g., County, State, Latitude, and Longitude) in JSON format.  See <http://www.sba.gov/about-sba-services/7617> for more info about the API.
+View one retrieves US Geographic Survey data dynamically from the Small Business Admnistration's (SBA) API by using Kenneth Reitz's excellent [Requests] (http://docs.python-requests.org/en/latest/) library, and then cleans up the JSON and displays it as a list.  View two displays city info for a given county by querying a PostgreSQL database, which is manually populated with city info via a JSON fixture--the fixture itself being created from the the same SBA API.
 
-As mentioned, the app has two views.  View one retrieves data dynamically from the SBA's API via Kenneth Reitz's excellent _Requests_ library, and then cleans up the JSON and displays it as a list.  View two displays city info for a given county by querying a PostgreSQL database, which was populated with city info via manually leveraging a large JSON fixture--the fixture itself being created from the the same SBA API.
+
+###TECHNOLOGY STACK
+There are many ways to deploy Django.  Simpletown uses: Django, mod_wsgi, and Apache installed on an AWS EC2 server (Ubuntu Precise 12.04-i386) associated with an Elastic IP. PostgreSQL is the database used in both development and production.  Site styling provided courtesy of Bootstrap.  All HTML5/CSS3 is fully validated.
 
 
 ###"FAST LANE" AMI FOR A RAPID LAUNCH (COMING SOON!)
-Your own copy of Simpletown is available and instantly deployable in less than five minutes if you purchase its Amazon Machine Image (AMI)...which is available for a one-time fee of just $5.  Save yourself the headache of backwards engineering the site from this repo; fahgeddabout configuring Apache and mod_wsgi. For the price of your carmel mocha machiatto (or a Redbull and Top Ramen), you can get past the boring Advil-laden part of deployment, and jump right into writing new models, new views, and styling your Django app as you see fit. Everything but e-mail settings are automagically configured for you in the FAST LANE AMI.
+Your own copy of Simpletown is available and instantly deployable in _less than_ five minutes if you purchase its Amazon Machine Image (AMI)...which is available for a one-time fee of just $5.  Save yourself the headache of backwards engineering the site from this repo; fahgeddabout configuring Apache and mod_wsgi. For the price of your carmel mocha machiatto (or a Redbull and Top Ramen), you can get past the boring Advil-laden part of deployment, and jump right into writing new models, new views, and styling your Django app as you see fit. Everything but e-mail settings are automagically configured for you in the FAST LANE AMI.
 
-
-###STANDARD DEPLOYMENT
-For best practices with regard to setting up your Django app see the _Two Scoops of Django_ project template and the associated book by Danny Greenfield and Audrey Roy:
-<https://github.com/twoscoops/django-twoscoops-project>
 
 ####SETTINGS
 With regard to Django settings, check out _The One True Way_ by Jacob Kaplan Moss:
@@ -38,7 +42,7 @@ With regard to Django settings, check out _The One True Way_ by Jacob Kaplan Mos
 Code is opinionated.  Here's an alternative to the above by Bruno Renié:
 <http://bruno.im/2013/may/18/django-stop-writing-settings-files/>
 
-Simpletown's settings live in the _settings_ directory with separate files providing settings common to all environments (_base.py_), as well as files providing settings unique to development (_dev.py_), and production (_prod.py_) environments.  Most settings are handled in this manner in accord with Kaplan Moss' "One True Way", but some are managed via environment variables and/or envdir in the manner prescribed by Renié.  Some environment variables are also managed by inclusion in the Apache config file, and yet others are generated dynamically when needed.  Simpletown's settings are still being optimized with the intent of enabling the aforementioned "Fast Lane" deployment on AWS, and--in the interim--some environment variables may need to be set manually.
+Simpletown's settings live in the _settings_ directory with separate files providing settings common to all environments (_base.py_), as well as files providing settings unique to development (_dev.py_), and production (_prod.py_) environments.  Most settings are handled in this manner in accord with Kaplan Moss' "One True Way", but some are managed via environment variables and/or envdir in the manner prescribed by Renié.  Some environment variables are also managed by inclusion in the Apache config file, and yet others are generated dynamically when needed.  Simpletown's settings are still being optimized with the intent of enabling the aforementioned "Fast Lane" deployment on AWS, so--in the interim--some environment variables may need to be set manually.
 
 
 You will need to change the following after launch...
