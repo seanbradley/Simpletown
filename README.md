@@ -66,7 +66,10 @@ After adjusting these settings, remember to...
 
     touch .bashrc
 
-If you use a different e-mail provider than Gmail, you'll have to provide additional e-mail info in Django's settings file.
+If you're using a virtualenv--and you should-- _and_ you plan on running multiple environments on the same machine, you can place the above environment variable settings in your _bin/activate script_.  If you don't plan on running multiple environments on the same machine, just stick with placing the settings in the  _.bashrc_ file of your home directory.
+
+Finally, i6
+f you use a different e-mail provider than Gmail, you'll have to provide additional e-mail info in Django's settings file.
 
 
 ###STATIC ASSETS VS. MEDIA FILES
