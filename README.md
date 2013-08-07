@@ -37,36 +37,36 @@ With regard to app config, check out _The One True Way_ by Jacob Kaplan Moss:
 Code is opinionated.  Here's an alternative to the above by Bruno Renié:
 <http://bruno.im/2013/may/18/django-stop-writing-settings-files/>
 
-In the settings.py, you will need to change the following after launch...
+You will need to change the following after launch...
 
+In your Django settings file...
 * ADMINS
-* SECRET_KEY
-* ALLOWED_HOSTS
 * EMAIL_HOST_PASSWORD
 * EMAIL_HOST_USER
+
+In your Apache config file of your production machine, and the .bashrc of
+your development machine...
+* SECRET_KEY
+
+In the .bashrc of your development machine...
 * DEBUG
 
 
-Set DEBUG as an environment variable on your development machine, like so...
+Set the SECRET_KEY and DEBUG as an environment variable on your development machine, like so...
 
+    SECRET_KEY="your_secret_key"; export SECRET_KEY
     DEBUG="True"; export DEBUG
 
-Or, make it permanent in your development environment via placing the
-following in ~/.bashrc, like so:
+Or, make these settings permanent in your development environment via placing the following in ~/.bashrc, like so:
 
+    SECRET_KEY = 'your_secret_key'
     DEBUG = 'True'
 
-After adjusting this setting, remember to...
+After adjusting these settings, remember to...
 
     touch .bashrc
 
-You also need to set an original SECRET_KEY
-
-...and...
-
-You need to change ALLOWED_HOSTS to the URL for your individual AWS EC2 instance, or to an AWS Elastic IP, or your actual custom domain.
-
-If you use a different e-mail provider than Gmail, you'll have to configure additional e-mail settings.
+If you use a different e-mail provider than Gmail, you'll have to provide additional e-mail info in Django's settings file.
 
 
 ###STATIC ASSETS VS. MEDIA FILES
