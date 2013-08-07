@@ -1,0 +1,48 @@
+
+
+       Column       |          Type          |                        Modifiers                         | Storage  |
+--------------------+------------------------+----------------------------------------------------------+----------+-----
+ id                 | integer                | not null default nextval('cities_city_id_seq'::regclass) | plain    |
+ feat_class         | character varying(255) |                                                          | extended |
+ link_title         | character varying(255) |                                                          | extended |
+ description        | text                   |                                                          | extended |
+ fips_class         | character varying(2)   |                                                          | extended |
+ url                | character varying(255) |                                                          | extended |
+ name               | character varying(255) |                                                          | extended |
+ feature_id         | integer                |                                                          | plain    |
+ state_name         | character varying(25)  |                                                          | extended |
+ fips_county_cd     | character varying(255) |                                                          | extended |
+ state_abbreviation | character(2)           |                                                          | extended |
+ full_county_name   | character varying(255) |                                                          | extended |
+ county_name        | character varying(255) |                                                          | extended |
+ primary_latitude   | numeric(6,3)           |                                                          | main     |
+ primary_longitude  | numeric(6,3)           |                                                          | main     |
+
+
+DeserializationError: Problem installing fixture '/home/bluewolf/Projects/sb_biz/cities/fixtures/testdata.json': u'fields'
+
+
+Indexes:
+    "cities_city_pkey" PRIMARY KEY, btree (id)
+Has OIDs: no
+
+
+BEGIN;
+CREATE TABLE "cities_city" (
+    "link_title" varchar(255),
+    "fips_class" varchar(2),
+    "url" varchar(255),
+    "name" varchar(255),
+    "feature_id" int,
+    "state_name" varchar(25),
+    "fips_county_cd" varchar(255),
+    "state_abbreviation" char(2),
+    "full_county_name" varchar(255),
+    "county_name" varchar(255),
+    "primary_latitude"  decimal(6,3),
+    "primary_longitude" decimal(6,3),
+    "feat_class" varchar(255)
+)
+;
+
+COMMIT;
