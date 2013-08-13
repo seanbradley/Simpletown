@@ -3,6 +3,7 @@
 import os, sys
 from os import environ
 from os.path import basename
+from django.utils.crypto import get_random_string
 from unipath import Path
 
 
@@ -17,6 +18,9 @@ TEMPLATE_DIRS = (
     PROJECT_DIR.child("templates"),
 )
 ROOT_URLCONF = 'urls'
+
+def ABS_PATH(*args):
+    return os.path.join(PROJECT_DIR, *args)
 
 # Site name...
 SITE_NAME = basename(PROJECT_DIR)
@@ -169,8 +173,22 @@ SERVER_EMAIL = EMAIL_HOST_USER
 
 ########## MISC SETTINGS
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
-# And: http://drumcoder.co.uk/blog/2010/nov/12/apache-environment-variables-and-mod_wsgi/
-SECRET_KEY = os.environ['SECRET_KEY']
+# The following function checks to see if the SECRET_KEY can be retrieved
+# from a secret.py file.  If it cannot, it creates the file and generates
+# the key via the same manner that Django does when starting a new project.
+def ensure_secret_key_file():
+    """Checks that secret.py exists in settings dir. If not, creates one
+    with a random generated SECRET_KEY setting."""
+    secret_path = os.path.join(ABS_PATH('settings'), 'secret.py')
+    if not os.path.exists(secret_path):
+        from django.utils.crypto import get_random_string
+        secret_key = get_random_string(50, 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)')
+        with open(secret_path, 'w') as f:
+            f.write("SECRET_KEY = " + repr(secret_key) + "\n")
+
+# Import the secret key
+ensure_secret_key_file()
+from secret import SECRET_KEY
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
