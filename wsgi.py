@@ -16,13 +16,14 @@ _application = get_wsgi_application()
 
 # pull in an env var set in apache config
 def application(environ, start_response):
+
   os.environ['SECRET_KEY'] = environ['SECRET_KEY']
   return _application(environ, start_response)
-  
+
 # monitor code changes
 #monitor.start(interval=1.0)
 #monitor.track(os.path.join(os.path.dirname(__file__), '..'))
-  
+
 # logging middleware
 class LoggingMiddleware:
 

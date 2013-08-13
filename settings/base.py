@@ -170,7 +170,7 @@ SERVER_EMAIL = EMAIL_HOST_USER
 ########## MISC SETTINGS
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 # And: http://drumcoder.co.uk/blog/2010/nov/12/apache-environment-variables-and-mod_wsgi/
-SECRET_KEY = environ.get('SECRET_KEY')
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
