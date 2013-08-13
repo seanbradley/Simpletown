@@ -5,10 +5,6 @@
     ServerAdmin you@yourdomain.com
     ServerName sb_biz
 
-    # You can set env vars here, and pull them into the application via wsgi.py
-    SetEnv SECRET_KEY your_secret_key_goes_here
-
-
     # Settings for mod-wsgi and its daemon process...
     ####################################################################
 

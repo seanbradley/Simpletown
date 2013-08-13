@@ -35,14 +35,14 @@ There are many ways to deploy Django.  Simpletown uses: Django, mod_wsgi, and Ap
 Your own copy of Simpletown is available and instantly deployable in _less than_ five minutes if you purchase its Amazon Machine Image (AMI)...which is available for a one-time fee of just $5.  Save yourself the headache of backwards engineering the site from this repo; fahgeddabout configuring Apache and mod_wsgi. For the price of your carmel mocha machiatto (or a Redbull and Top Ramen), you can get past the boring Advil-laden part of deployment, and jump right into writing new models, new views, and styling your Django app as you see fit. Everything but e-mail settings are automagically configured for you in the FAST LANE AMI.
 
 
-####SETTINGS
+###SETTINGS
 With regard to Django settings, check out _The One True Way_ by Jacob Kaplan Moss:
 <https://speakerdeck.com/jacobian/the-best-and-worst-of-django?slide=81>
 
 Code is opinionated.  Here's an alternative to the above by Bruno Renié:
 <http://bruno.im/2013/may/18/django-stop-writing-settings-files/>
 
-Simpletown's settings live in the _settings_ directory with separate files providing settings common to all environments ( _base.py_ ), as well as files providing settings unique to development ( _dev.py_ ), and production ( _prod.py_ ) environments.  Most settings are handled in this manner in accord with Kaplan Moss' "One True Way", but some are managed via environment variables and/or envdir in the manner prescribed by Renié.  Some environment variables are also managed by inclusion in the Apache config file, and yet others are generated dynamically when needed.  Simpletown's settings are still being optimized with the intent of enabling the aforementioned "Fast Lane" deployment on AWS, so--in the interim--some environment variables may need to be set manually.
+Simpletown's settings live in the _settings_ directory with separate files providing settings common to all environments ( _base.py_ ), as well as files providing settings unique to development ( _dev.py_ ), and production ( _prod.py_ ) environments.  Most settings are handled in this manner in accord with Kaplan Moss' "One True Way", but some are managed via environment variables and/or envdir in the manner prescribed by Renié.  Whenever possible, environment variables are set dynamically, outside of the settings.py.  Simpletown's settings are still being optimized with the intent of enabling the aforementioned "Fast Lane" deployment on AWS, so--in the interim--some environment variables may need to be set manually.
 
 
 You will need to change the following after launch...
@@ -52,11 +52,8 @@ In your Django settings file...
 * EMAIL_HOST_PASSWORD
 * EMAIL_HOST_USER
 
-In your Apache config file of your production machine, and the .bashrc of
-your development machine...
+In the .bashrc of your development machine...
 * SECRET_KEY
-
-In the .bashrc of your development machine only...
 * DEBUG
 
 Set the SECRET_KEY and DEBUG as an environment variable on your development machine, like so...
