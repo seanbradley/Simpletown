@@ -16,8 +16,7 @@ _application = get_wsgi_application()
 
 # pull in an env var set in apache config
 def application(environ, start_response):
-
-  os.environ['SECRET_KEY'] = environ['SECRET_KEY']
+  #os.environ['SECRET_KEY'] = environ['SECRET_KEY']
   return _application(environ, start_response)
 
 # monitor code changes

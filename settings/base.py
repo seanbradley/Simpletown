@@ -184,11 +184,12 @@ def ensure_secret_key_file():
         from django.utils.crypto import get_random_string
         secret_key = get_random_string(50, 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)')
         with open(secret_path, 'w') as f:
-            f.write("SECRET_KEY = " + repr(secret_key) + "\n")
+            f.write("skey = " + repr(secret_key) + "\n" + "return skey" + "\n")
 
 # Import the secret key
 ensure_secret_key_file()
-from secret import SECRET_KEY
+from secret import skey
+SECRET_KEY = skey
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
