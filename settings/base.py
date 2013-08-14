@@ -3,7 +3,6 @@
 import os, sys
 from os import environ
 from os.path import basename
-from django.utils.crypto import get_random_string
 from unipath import Path
 
 
@@ -19,9 +18,6 @@ TEMPLATE_DIRS = (
 )
 ROOT_URLCONF = 'urls'
 
-def ABS_PATH(*args):
-    return os.path.join(PROJECT_DIR, *args)
-
 # Site name...
 SITE_NAME = basename(PROJECT_DIR)
 ########## END PATH CONFIGURATION
@@ -32,12 +28,12 @@ SITE_NAME = basename(PROJECT_DIR)
 # settings, but ImproperlyConfigured is an exception.
 from django.core.exceptions import ImproperlyConfigured
 
-def get_env_setting(setting):
+def get_env_variable(var_name):
     """ Get the environment setting or return exception """
     try:
-        return environ[setting]
+        return os.environ[var_name]
     except KeyError:
-        error_msg = "Set the %s env variable" % setting
+        error_msg = "Set the %s environment variable" % var_name
         raise ImproperlyConfigured(error_msg)
 ########## END EXCEPTION HANDLING
 
@@ -176,20 +172,8 @@ SERVER_EMAIL = EMAIL_HOST_USER
 # The following function checks to see if the SECRET_KEY can be retrieved
 # from a secret.py file.  If it cannot, it creates the file and generates
 # the key via the same manner that Django does when starting a new project.
-def ensure_secret_key_file():
-    """Checks that secret.py exists in settings dir. If not, creates one
-    with a random generated SECRET_KEY setting."""
-    secret_path = os.path.join(ABS_PATH('settings'), 'secret.py')
-    if not os.path.exists(secret_path):
-        from django.utils.crypto import get_random_string
-        secret_key = get_random_string(50, 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)')
-        with open(secret_path, 'w') as f:
-            f.write("skey = " + repr(secret_key) + "\n")
+SECRET_KEY = get_env_variable("SECRET_KEY")
 
-# Import the secret key
-ensure_secret_key_file()
-from secret import skey
-SECRET_KEY = skey
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts

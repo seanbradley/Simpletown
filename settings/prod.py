@@ -4,10 +4,16 @@ import requests
 from .base import *
 
 ########## ADD'L MISC SETTINGS
+from requests.exceptions import ConnectionError
+
 url = "http://169.254.169.254/latest/meta-data/public-ipv4"
-r = requests.get(url)
-instance_ip = r.text
-ALLOWED_HOSTS += [instance_ip]
+try:
+    r = requests.get(url)
+    instance_ip = r.text
+    ALLOWED_HOSTS += [instance_ip]
+except ConnectionError:
+    error_msg = "You can only run production settings on an AWS EC2 instance"
+    raise ImproperlyConfigured(error_msg)
 ########## END ADD'L MISC SETTINGS
 
 ########## ADD'L EMAIL CONFIGURATION

@@ -63,8 +63,8 @@ Set the SECRET_KEY and DEBUG as an environment variable on your development mach
 
 Or, make these settings permanent in your development environment via placing the following in ~/.bashrc, like so...
 
-    SECRET_KEY = 'your_secret_key'
-    DEBUG = 'True'
+    export SECRET_KEY = 'your_secret_key'
+    export DEBUG = 'True'
 
 After adjusting these settings, remember to...
 
