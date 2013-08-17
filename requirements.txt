@@ -7,7 +7,9 @@ requests==1.2.3
 argparse==1.2.1
 envdir==0.3
 south==0.8.1
+csvkit==0.5.0
 django-debug-toolbar==0.9.4
 django-registration==1.0
 django-registration-defaults==0.3
+django-yearlessdate==0.3-beta
 yolk==0.4.3
