@@ -4,8 +4,9 @@ admin.autodiscover()
 
 import registration
 from main import views
+from cars import views
 from cities.views import view_one, view_two
-
+#from cars.views import CarListView
 
 urlpatterns = patterns('',
 
@@ -15,6 +16,9 @@ urlpatterns = patterns('',
     ##### cities #####
     url(r'^view_one', view_one),
     url(r'^view_two', view_two),
+
+    ##### cars #####
+    url(r'^cars/', include('cars.urls')),
 
     ##### registration #####
     url(r'^accounts/', include('registration.urls')),
