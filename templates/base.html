@@ -13,8 +13,8 @@
     <meta name="description" content="" />
     <meta name="robots" content="index, follow" />
     -->
-    <link type="text/css" href="{% static "site-styles/css/bootstrap.min.css" %}" rel="stylesheet" />
-    <link type="text/css" href="{% static "site-styles/css/bootstrap-responsive.min.css" %}" rel="stylesheet" />
+    <!--<link type="text/css" href="{% static "site-styles/css/bootstrap.min.css" %}" rel="stylesheet" />
+    <link type="text/css" href="{% static "site-styles/css/bootstrap-responsive.min.css" %}" rel="stylesheet" />-->
     <link type="text/css" href="http://www.seanbradley.biz/static/compass_project/stylesheets/screen.css" rel="stylesheet" />
     <!-- fav and touch icons -->
     <!--
@@ -34,7 +34,7 @@
     {% endblock %}
 
     {% if not debug %}
-    <script type="text/javascript">
+    <!--<script type="text/javascript">
         var _gaq = _gaq || [];
         //include Google tracking key in following line...
         _gaq.push(['_setAccount', '<GOOGLE_KEY_GOES_HERE>']);
@@ -45,7 +45,7 @@
           ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
           var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
-    </script>
+    </script>-->
     {% endif %}
 
     <style type="text/css">
@@ -88,7 +88,8 @@
                             {% endif %}
                             <li><a href="/">Home</a></li>
                             <li><a href="/view_one">All Cities</a></li>
-                            <li><a href="/view_two">Search By County</a></li>
+                            <li><a href="/view_two">Search Cities</a></li>
+                            <li><a href="/cars/dmv">Seach Cars</a></li>
                             <li><a href="/admin">Admin</a></li>
                             {% if user.is_active %}
                             <li><a href="{% url 'auth_logout' %}">Logout</a></li>
@@ -102,8 +103,9 @@
                             <li><a href="{% url 'auth_logout' %}">Logout</a></li>
                             {% endif %}
                             <li class="btn-navbar btn-inverse"><a href="/admin">Admin</a></li>
-                            <li class="btn-navbar btn-inverse"><a href="/view_two">Search By County</a></li>
-                            <li class="btn-navbar btn-inverse"><a href="/view_one">All Cities</a></li>
+                            <li class="btn-navbar btn-inverse"><a href="/cars/dmv">Search Cars</a></li>
+                            <li class="btn-navbar btn-inverse"><a href="/view_two">Search Cities</a></li>
+                            <li class="btn-navbar btn-inverse"><a href="/view_one">Cities</a></li>
                             <li class="btn-navbar btn-inverse"><a href="/">Home</a></li>
                             {% if user.is_active %}
                             <li><a>Welcome, {% filter force_escape %}{% firstof user.get_short_name user.get_username %}{% endfilter %}!</a></li>
@@ -165,7 +167,8 @@
                             <li class="nav-header">MENU</li>
                             <li><a href="/">Home</a></li>
                             <li><a href="/view_one">All Cities</a></li>
-                            <li><a href="/view_two">Search By County</a></li>
+                            <li><a href="/view_two">Search Cities</a></li>
+                            <li><a href="/cars/dmv">Search Cars</a></li>
                             <li><a href="/admin">Admin</a></li>
                         </ul>
                         {% block sidebarnav %}
