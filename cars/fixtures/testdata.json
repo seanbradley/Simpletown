@@ -1,0 +1,482 @@
+[
+    {
+        "pk": 1,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "2-Door Autobahn DSG",
+            "trim_id": 253913,
+            "vehicle_model": "GTI",
+            "vsn": "XXRC*V******"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "2-Door Autobahn DSG",
+            "trim_id": 253913,
+            "vehicle_model": "GTI",
+            "vsn": "XZTE*V******"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "2-Door Autobahn Manual",
+            "trim_id": 253911,
+            "vehicle_model": "GTI",
+            "vsn": "WYTE*V******"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "2-Door Autobahn Manual",
+            "trim_id": 253911,
+            "vehicle_model": "GTI",
+            "vsn": "WWRC*V******"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "2-Door DSG",
+            "trim_id": 253901,
+            "vehicle_model": "GTI",
+            "vsn": "XZTE*V******"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "2-Door DSG",
+            "trim_id": 253901,
+            "vehicle_model": "GTI",
+            "vsn": "XXRC*V******"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "2-Door Manual",
+            "trim_id": 253899,
+            "vehicle_model": "GTI",
+            "vsn": "WWRC*V******"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "2-Door Manual",
+            "trim_id": 253899,
+            "vehicle_model": "GTI",
+            "vsn": "WYTE*V******"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "2-Door with Convenience and Sunroof Manual",
+            "trim_id": 253903,
+            "vehicle_model": "GTI",
+            "vsn": "WWRC*V******"
+        }
+    },
+    {
+        "pk": 10,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "2-Door with Convenience and Sunroof DSG",
+            "trim_id": 253905,
+            "vehicle_model": "GTI",
+            "vsn": "XZTE*V******"
+        }
+    },
+    {
+        "pk": 11,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "2-Door with Convenience and Sunroof DSG",
+            "trim_id": 253905,
+            "vehicle_model": "GTI",
+            "vsn": "XXRC*V****3*"
+        }
+    },
+    {
+        "pk": 12,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "2-Door with Convenience and Sunroof DSG",
+            "trim_id": 253905,
+            "vehicle_model": "GTI",
+            "vsn": "XXRC*V*12***"
+        }
+    },
+    {
+        "pk": 13,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "2-Door with Sunroof and Navigation DSG",
+            "trim_id": 253909,
+            "vehicle_model": "GTI",
+            "vsn": "XXRC*V******"
+        }
+    },
+    {
+        "pk": 14,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "2-Door with Sunroof and Navigation DSG",
+            "trim_id": 253909,
+            "vehicle_model": "GTI",
+            "vsn": "XZTE*V******"
+        }
+    },
+    {
+        "pk": 15,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "2-Door with Sunroof and Navigation Manual",
+            "trim_id": 253907,
+            "vehicle_model": "GTI",
+            "vsn": "WWRC*V******"
+        }
+    },
+    {
+        "pk": 16,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "2-Door with Sunroof and Navigation Manual",
+            "trim_id": 253907,
+            "vehicle_model": "GTI",
+            "vsn": "WYTE*V******"
+        }
+    },
+    {
+        "pk": 17,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "4-Door Autobahn DSG",
+            "trim_id": 253929,
+            "vehicle_model": "GTI",
+            "vsn": "ZZRC*V***4**"
+        }
+    },
+    {
+        "pk": 18,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "4-Door Autobahn DSG",
+            "trim_id": 253929,
+            "vehicle_model": "GTI",
+            "vsn": "ZJTE*V******"
+        }
+    },
+    {
+        "pk": 19,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "4-Door Autobahn Manual",
+            "trim_id": 253927,
+            "vehicle_model": "GTI",
+            "vsn": "YYRC*V******"
+        }
+    },
+    {
+        "pk": 20,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "4-Door Autobahn Manual",
+            "trim_id": 253927,
+            "vehicle_model": "GTI",
+            "vsn": "YGTE*V******"
+        }
+    },
+    {
+        "pk": 21,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "4-Door DSG",
+            "trim_id": 253917,
+            "vehicle_model": "GTI",
+            "vsn": "ZJTE*V******"
+        }
+    },
+    {
+        "pk": 22,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "4-Door DSG",
+            "trim_id": 253917,
+            "vehicle_model": "GTI",
+            "vsn": "ZZRC*V******"
+        }
+    },
+    {
+        "pk": 23,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "4-Door Manual",
+            "trim_id": 253915,
+            "vehicle_model": "GTI",
+            "vsn": "YGTE*V******"
+        }
+    },
+    {
+        "pk": 24,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "4-Door Manual",
+            "trim_id": 253915,
+            "vehicle_model": "GTI",
+            "vsn": "YYRC*V******"
+        }
+    },
+    {
+        "pk": 25,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "4-Door with Convenience and Sunroof DSG",
+            "trim_id": 253921,
+            "vehicle_model": "GTI",
+            "vsn": "ZJTE*V******"
+        }
+    },
+    {
+        "pk": 26,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "4-Door with Convenience and Sunroof DSG",
+            "trim_id": 253921,
+            "vehicle_model": "GTI",
+            "vsn": "ZZRC*V******"
+        }
+    },
+    {
+        "pk": 27,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "2-Door with Convenience and Sunroof Manual",
+            "trim_id": 253903,
+            "vehicle_model": "GTI",
+            "vsn": "WYTE*V******"
+        }
+    },
+    {
+        "pk": 28,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "4-Door with Convenience and Sunroof Manual",
+            "trim_id": 253919,
+            "vehicle_model": "GTI",
+            "vsn": "YGTE*V******"
+        }
+    },
+    {
+        "pk": 29,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "4-Door with Convenience and Sunroof Manual",
+            "trim_id": 253919,
+            "vehicle_model": "GTI",
+            "vsn": "YYRC*V******"
+        }
+    },
+    {
+        "pk": 30,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "4-Door with Sunroof and Navigation DSG",
+            "trim_id": 253925,
+            "vehicle_model": "GTI",
+            "vsn": "ZJTE*V******"
+        }
+    },
+    {
+        "pk": 31,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "4-Door with Sunroof and Navigation DSG",
+            "trim_id": 253925,
+            "vehicle_model": "GTI",
+            "vsn": "ZZRC*V******"
+        }
+    },
+    {
+        "pk": 32,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "4-Door with Sunroof and Navigation Manual",
+            "trim_id": 253923,
+            "vehicle_model": "GTI",
+            "vsn": "ZJTE*V000000"
+        }
+    },
+    {
+        "pk": 33,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "4-Door with Sunroof and Navigation Manual",
+            "trim_id": 253923,
+            "vehicle_model": "GTI",
+            "vsn": "YGTE*V******"
+        }
+    },
+    {
+        "pk": 34,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "4-Door with Sunroof and Navigation Manual",
+            "trim_id": 253923,
+            "vehicle_model": "GTI",
+            "vsn": "YYRC*V******"
+        }
+    },
+    {
+        "pk": 35,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "Driver's Edition DSG",
+            "trim_id": 259175,
+            "vehicle_model": "GTI",
+            "vsn": "ZJTE*V******"
+        }
+    },
+    {
+        "pk": 36,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "Driver's Edition DSG",
+            "trim_id": 259175,
+            "vehicle_model": "GTI",
+            "vsn": "ZZRC*V******"
+        }
+    },
+    {
+        "pk": 37,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "Driver's Edition Manual",
+            "trim_id": 259173,
+            "vehicle_model": "GTI",
+            "vsn": "YGTE*V******"
+        }
+    },
+    {
+        "pk": 38,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "Driver's Edition Manual",
+            "trim_id": 259173,
+            "vehicle_model": "GTI",
+            "vsn": "YYRC*V******"
+        }
+    },
+    {
+        "pk": 39,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "Wolfsburg Edition DSG",
+            "trim_id": 258328,
+            "vehicle_model": "GTI",
+            "vsn": "ZZRC*V***44*"
+        }
+    },
+    {
+        "pk": 40,
+        "model": "cars.Car",
+        "fields": {
+            "vehicle_year": 2013,
+            "make": "Volkswagen",
+            "trim_name": "Wolfsburg Edition Manual",
+            "trim_id": 258326,
+            "vehicle_model": "GTI",
+            "vsn": "ZZRC*V******"
+        }
+    }
+]

@@ -1,0 +1,41 @@
+pk,vsn,trim_id,vehicle_year,make,vehicle_model,trim_name
+1,XXRC*V******,253913,2013,Volkswagen,GTI,2-Door Autobahn DSG
+2,XZTE*V******,253913,2013,Volkswagen,GTI,2-Door Autobahn DSG
+3,WYTE*V******,253911,2013,Volkswagen,GTI,2-Door Autobahn Manual
+4,WWRC*V******,253911,2013,Volkswagen,GTI,2-Door Autobahn Manual
+5,XZTE*V******,253901,2013,Volkswagen,GTI,2-Door DSG
+6,XXRC*V******,253901,2013,Volkswagen,GTI,2-Door DSG
+7,WWRC*V******,253899,2013,Volkswagen,GTI,2-Door Manual
+8,WYTE*V******,253899,2013,Volkswagen,GTI,2-Door Manual
+9,WWRC*V******,253903,2013,Volkswagen,GTI,2-Door with Convenience and Sunroof Manual
+10,XZTE*V******,253905,2013,Volkswagen,GTI,2-Door with Convenience and Sunroof DSG
+11,XXRC*V****3*,253905,2013,Volkswagen,GTI,2-Door with Convenience and Sunroof DSG
+12,XXRC*V*12***,253905,2013,Volkswagen,GTI,2-Door with Convenience and Sunroof DSG
+13,XXRC*V******,253909,2013,Volkswagen,GTI,2-Door with Sunroof and Navigation DSG
+14,XZTE*V******,253909,2013,Volkswagen,GTI,2-Door with Sunroof and Navigation DSG
+15,WWRC*V******,253907,2013,Volkswagen,GTI,2-Door with Sunroof and Navigation Manual
+16,WYTE*V******,253907,2013,Volkswagen,GTI,2-Door with Sunroof and Navigation Manual
+17,ZZRC*V***4**,253929,2013,Volkswagen,GTI,4-Door Autobahn DSG
+18,ZJTE*V******,253929,2013,Volkswagen,GTI,4-Door Autobahn DSG
+19,YYRC*V******,253927,2013,Volkswagen,GTI,4-Door Autobahn Manual
+20,YGTE*V******,253927,2013,Volkswagen,GTI,4-Door Autobahn Manual
+21,ZJTE*V******,253917,2013,Volkswagen,GTI,4-Door DSG
+22,ZZRC*V******,253917,2013,Volkswagen,GTI,4-Door DSG
+23,YGTE*V******,253915,2013,Volkswagen,GTI,4-Door Manual
+24,YYRC*V******,253915,2013,Volkswagen,GTI,4-Door Manual
+25,ZJTE*V******,253921,2013,Volkswagen,GTI,4-Door with Convenience and Sunroof DSG
+26,ZZRC*V******,253921,2013,Volkswagen,GTI,4-Door with Convenience and Sunroof DSG
+27,WYTE*V******,253903,2013,Volkswagen,GTI,2-Door with Convenience and Sunroof Manual
+28,YGTE*V******,253919,2013,Volkswagen,GTI,4-Door with Convenience and Sunroof Manual
+29,YYRC*V******,253919,2013,Volkswagen,GTI,4-Door with Convenience and Sunroof Manual
+30,ZJTE*V******,253925,2013,Volkswagen,GTI,4-Door with Sunroof and Navigation DSG
+31,ZZRC*V******,253925,2013,Volkswagen,GTI,4-Door with Sunroof and Navigation DSG
+32,ZJTE*V000000,253923,2013,Volkswagen,GTI,4-Door with Sunroof and Navigation Manual
+33,YGTE*V******,253923,2013,Volkswagen,GTI,4-Door with Sunroof and Navigation Manual
+34,YYRC*V******,253923,2013,Volkswagen,GTI,4-Door with Sunroof and Navigation Manual
+35,ZJTE*V******,259175,2013,Volkswagen,GTI,Driver's Edition DSG
+36,ZZRC*V******,259175,2013,Volkswagen,GTI,Driver's Edition DSG
+37,YGTE*V******,259173,2013,Volkswagen,GTI,Driver's Edition Manual
+38,YYRC*V******,259173,2013,Volkswagen,GTI,Driver's Edition Manual
+39,ZZRC*V***44*,258328,2013,Volkswagen,GTI,Wolfsburg Edition DSG
+40,ZZRC*V******,258326,2013,Volkswagen,GTI,Wolfsburg Edition Manual

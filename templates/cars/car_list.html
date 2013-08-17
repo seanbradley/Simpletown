@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block article_one %}
+        <h2>Cars with that VSN...</h2>
+        <ul>
+            {% for car in cars %}
+                <li>{{ car }}</li>
+            {% endfor %}
+        </ul>
+{% endblock %}

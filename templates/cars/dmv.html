@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block article_one %}
+    <div>
+
+        <h2>Enter a vehicle's VSN number...</h2>
+        <p>...to display all available data on that vehicle.</p>
+        {% if form.errors %}
+            <p style="color: red;">
+                Please correct the error{{ form.errors|pluralize }} below.
+            </p>
+        {% endif %}
+
+        <form action="dmv" method="POST">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input type="submit" value="Submit">
+        </form>
+
+    </div><!--/span-->
+{% endblock %}
