@@ -112,8 +112,10 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'south',
+    'csvimport',
     'registration',
-    'cities'
+    'cities',
+    'cars'
     # Some add'l useful apps you might want to install if using SIMPLETOWN'S FAST LANE AMI
     #'django.contrib.admindocs',
     #'django-extensions', #to use, just uncomment this line
@@ -169,11 +171,7 @@ SERVER_EMAIL = EMAIL_HOST_USER
 
 ########## MISC SETTINGS
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
-# The following function checks to see if the SECRET_KEY can be retrieved
-# from a secret.py file.  If it cannot, it creates the file and generates
-# the key via the same manner that Django does when starting a new project.
 SECRET_KEY = get_env_variable("SECRET_KEY")
-
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
