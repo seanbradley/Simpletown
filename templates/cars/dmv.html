@@ -11,7 +11,7 @@
             </p>
         {% endif %}
 
-        <form action="dmv" method="POST">
+        <form action="dmv" method="GET">
             {{ form.as_p }}
             {% csrf_token %}
             <input type="submit" value="Submit">
