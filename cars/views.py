@@ -15,27 +15,28 @@ from django.views.generic.base import View, TemplateView, TemplateResponse
 from django.views.generic.detail import DetailView
 
 from .models import Car
-from .forms import CarForm #, CarSearchForm
+from .forms import CarForm
 
 
 def dmv(request):
-    if request.method == 'POST':  #change to GET
-        form = CarForm(request.POST)  #change to GET
+
+    if request.method == 'GET':  #<--change request.method to POST here, and in template
+        form = CarForm(request.GET) #<--change request.method to POST here, and in template
         if form.is_valid():
-            data = form.data['vsn']
-            # See http://stackoverflow.com/questions/150505/capturing-url-parameters-in-request-get
-            #request.GET['q']
-            #q = self.request.GET.get("q")
+            #data = form.data['vsn']  #<--uncomment
+            data = request.GET.get("vsn")
             results = Car.objects.filter(vsn = data)
-            #results = Car.objects.search("search_term_goes_here") # <--populate this dynamically
+            #results = Car.objects.search("search_term_goes_here") # <--requires custom model manager
             context = {'results': results}
             return render_to_response(
             'cars/results.html',
             RequestContext(request, context)
             )
+
     else:
         form = CarForm()
-        context = {'form': form}
+
+    context = {'form': form}
     return render_to_response(
     'cars/dmv.html',
     RequestContext(request, context)
