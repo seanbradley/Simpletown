@@ -14,7 +14,7 @@
         <form action="dmv" method="GET">
             {{ form.as_p }}
             {% csrf_token %}
-            <input type="submit" value="Submit">
+            <input type="submit" name="submit" value="Submit">
         </form>
 
     </div><!--/span-->

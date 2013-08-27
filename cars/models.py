@@ -1,9 +1,11 @@
-import operator
+#import operator
 from django.db import models
-from django.db.models import Q
 from djangoyearlessdate.models import YearField
+#from django.db.models import Q
 
 
+# incorparate a custom model manager like the following to create a special search filter...
+# usage:  Cars.search(filter...)
 class CarManager(models.Manager):
     def search(self, term):
         pass

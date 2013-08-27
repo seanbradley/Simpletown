@@ -3,16 +3,12 @@ import re, requests, json
 #from operator import itemgetter, attrgetter
 
 from django.contrib.auth.decorators import login_required
-from django.contrib.flatpages.models import FlatPage
-from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, render_to_response
 from django.template import loader, Context, RequestContext
-from django.utils.decorators import method_decorator
-from django.views.decorators.cache import cache_page
-from django.views.generic import ListView
-from django.views.generic.base import View, TemplateView, TemplateResponse
-from django.views.generic.detail import DetailView
+#from django.db.models import Q
+#from django.views.generic import ListView
+
 
 from .models import Car
 from .forms import CarForm
@@ -20,13 +16,11 @@ from .forms import CarForm
 
 def dmv(request):
 
-    if request.method == 'GET':  #<--change request.method to POST here, and in template
-        form = CarForm(request.GET) #<--change request.method to POST here, and in template
+    if 'submit' in request.GET:
+        form = CarForm(request.GET)
         if form.is_valid():
-            #data = form.data['vsn']  #<--uncomment
             data = request.GET.get("vsn")
             results = Car.objects.filter(vsn = data)
-            #results = Car.objects.search("search_term_goes_here") # <--requires custom model manager
             context = {'results': results}
             return render_to_response(
             'cars/results.html',
@@ -43,16 +37,11 @@ def dmv(request):
     )
 
 
-'''
-def results(request):
-    context = {'results': results}
-    return render_to_response(
-    'cars/results.html',
-    RequestContext(request, context)
-    )
-'''
 
 '''
+# Follows are some ideas about refactoring the above...
+
+# use a queryset...
 def dmv(request):
 
     if request.GET:
@@ -73,19 +62,27 @@ def dmv(request):
             'results': results,
         })
     )
-'''
 
-'''
-# find and split search terms in the query
-# omits spaces
+
+# filter results with icontains...
+def dmv(request):
+    query = request.GET['q']
+    results = Car.objects.filter(vsn__icontains=query)
+    template = loader.get_template()
+    context = Context({ 'query': query, 'results':results })
+    response = template.render(context)
+
+
+# incorporate a utility function to find and split search terms and omit
+# spaces in the query...
 def normalize_query(query_string,
                     findterms=re.compile(r'"([^"]+)"|(\S+)').findall,
                     normspace=re.compile(r'\s{2,}').sub):
     return [normspace(' ', (t[0] or t[1]).strip()) for t in findterms(query_string)]
 
 
-# return a combo of Django Q objects
-# search for model keywords within given search fields
+# use Django Q objects (or a combo of them) to search via model keywords
+# within given search fields...
 def get_query(query_string, search_fields):
 
     # search for every possible term
@@ -106,21 +103,10 @@ def get_query(query_string, search_fields):
         else:
             query = query & or_query
     return query
-'''
 
-'''
-@login_required
-def dmv(request):
-    query = request.GET['q']
-    results = Car.objects.filter(vsn__icontains=query)
-    template = loader.get_template()
-    context = Context({ 'query': query, 'results':results })
-    response = template.render(context)
-    return HttpResponse(response)
-'''
 
-'''
-results = BlogPost.objects.filter(Q(title__icontains=your_search_query) | Q(intro__icontains=your_search_query) | Q(content__icontains=your_search_query)).order_by('pub_date')
+# chain together Django Q objects  via OR or AND to make more precise queries...
+results = Car.objects.filter(Q(vsn__icontains=query) | Q(some_other_model_attirbute__icontains=query)
 
     #Generic Search: GET should contain the following:
     #terms - the search keywords separated by spaces
@@ -129,40 +115,37 @@ results = BlogPost.objects.filter(Q(title__icontains=your_search_query) | Q(intr
 
     cars = Car.objects.all()
 
-    q = Q(content__icontains=term_list[0]) | Q(title__icontains=term_list[0])
+    q = Q(vsn__icontains=term_list[0]) | Q(some_other_model_attribute__icontains=term_list[0])
     for term in term_list[1:]:
-        q.add((Q(content__icontains=term) | Q(title__icontains=term)), q.connector)
+        q.add((Q(vsn__icontains=term) | Q(some_other_model_attribute__icontains=term)), q.connector)
 
     cars = cars.filter(q)
 
     return render_to_response('cars/dmv.html', locals(), \
             context_instance=RequestContext(request))
 
-'''
 
-'''
+# another refactoring: enables search via multiple model attributes...
+
     query_string = ''
     found_entries = None
 
     if ('q' in request.GET) and request.GET['q'].strip():
 
         query_string = request.GET['q']
+        vsn_query = get_query(query_string, ['a_model_attribute', 'another_model_attribute',])
+        results = Entry.objects.filter(vsn_query).order_by('trim_id')
 
-        entry_query = get_query(query_string, ['title', 'body',])
-
-        found_entries = Entry.objects.filter(entry_query).order_by('trim_id')
-
-    context = {'query_string': query_string, 'found_entries': found_entries}
+    context = {'query_string': query_string, 'results': results}
 
     return render_to_response(
         'cars/results.html',
         context,
         context_instance=RequestContext(request)
     )
-'''
 
 
-'''
+# or, finally, use as a class-based view...
 class CarListView(ListView):
     model = Car
 
