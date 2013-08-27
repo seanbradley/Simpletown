@@ -112,7 +112,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'south',
-    'csvimport',
     'registration',
     'cities',
     'cars'
