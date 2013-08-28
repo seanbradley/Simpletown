@@ -87,7 +87,7 @@
                             <li><a>Welcome, {% filter force_escape %}{% firstof user.get_short_name user.get_username %}{% endfilter %}!</a></li>
                             {% endif %}
                             <li><a href="/">Home</a></li>
-                            <li><a href="/view_one">All Cities</a></li>
+                            <li><a href="/view_one">List Cities</a></li>
                             <li><a href="/view_two">Search Cities</a></li>
                             <li><a href="/cars/dmv">Seach Cars</a></li>
                             <li><a href="/admin">Admin</a></li>
@@ -100,15 +100,15 @@
                     <div class="nav" style="float:right">
                         <ul class="btn-toolbar" data-toggle="collapse" data-target=".nav-collapse">
                             {% if user.is_active %}
-                            <li><a href="{% url 'auth_logout' %}">Logout</a></li>
+                            <li class="btn-navbar btn-inverse"><a href="{% url 'auth_logout' %}">Logout</a></li>
                             {% endif %}
                             <li class="btn-navbar btn-inverse"><a href="/admin">Admin</a></li>
                             <li class="btn-navbar btn-inverse"><a href="/cars/dmv">Search Cars</a></li>
                             <li class="btn-navbar btn-inverse"><a href="/view_two">Search Cities</a></li>
-                            <li class="btn-navbar btn-inverse"><a href="/view_one">Cities</a></li>
+                            <li class="btn-navbar btn-inverse"><a href="/view_one">List Cities</a></li>
                             <li class="btn-navbar btn-inverse"><a href="/">Home</a></li>
                             {% if user.is_active %}
-                            <li><a>Welcome, {% filter force_escape %}{% firstof user.get_short_name user.get_username %}{% endfilter %}!</a></li>
+                            <li class="btn-navbar btn-inverse"><a>Welcome, {% filter force_escape %}{% firstof user.get_short_name user.get_username %}{% endfilter %}!</a></li>
                             {% endif %}
                          </ul>
                     </div>
@@ -166,10 +166,13 @@
                         <ul class="nav nav-list">
                             <li class="nav-header">MENU</li>
                             <li><a href="/">Home</a></li>
-                            <li><a href="/view_one">All Cities</a></li>
+                            <li><a href="/view_one">List Cities</a></li>
                             <li><a href="/view_two">Search Cities</a></li>
                             <li><a href="/cars/dmv">Search Cars</a></li>
                             <li><a href="/admin">Admin</a></li>
+                            {% if user.is_active %}
+                            <li><a href="{% url 'auth_logout' %}">Logout</a></li>
+                            {% endif %}
                         </ul>
                         {% block sidebarnav %}
                         {% endblock %}

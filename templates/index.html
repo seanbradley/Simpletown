@@ -19,22 +19,44 @@
 {% block header %}
     <div class="hero-unit" id="hero-image">
         <p style="padding-top:40px;padding-bottom:80px">
-        This site provides US Geographic Survey city names and associated data such as County, State, Latitude, and Longitude as made available via the Small Business Association (SBA).  (See http://www.sba.gov/about-sba-services/7617 for more info.)</p>
+        This site provides a hypothetical implementation of web-based services for a city...<br />
+        <br />
+        <strong>DEPARTMENT OF PLANNING AND ZONING</strong>
+        <br />
+        The city's planning and zoning administrators can access US Geographic Survey city names and associated data such as County, State, Latitude, and Longitude as made available via the Small Business Association (SBA).  (See http://www.sba.gov/about-sba-services/7617 for more info.)<br />
+        <br />
+        <strong>DEPARTMENT OF MOTOR VEHICLES</strong>
+        <br />
+        The city's DMV administrators, police officers, auto sales professionals, and repossessors can look-up vehicle make and model by the VSN (Vehicle Serial Number)...i.e., a fictiti analogous to a VIN, or Vehicle Identification Number.</p>
     </div>
 {% endblock %}
 
 {% block article_one %}
     <div>
-        <h2>All Cities</h2>
+        <h1>City Information Resources Online...</h1>
+        <hr>
+    </div>
+    <br />
+    <div>
+        <h2>DEPARTMENT OF PLANNING AND ZONING</h2>
+        <br />
+        <h2><a href="/view_one">List All Cities</a></h2>
         <br />
         <p>A listing of all cities fetched from the SBA's API.</p>
+        <br />
+        <br />
+        <h2><a href="/view_two">Search Cities By County</a></h2>
+        <br />
+        <p>Allows you to search for all cities within a given county.</p>
     </div>
 {% endblock %}
 
 {% block article_two %}
     <div>
-        <h2>Search By County</h2>
+        <h2>DEPARTMENT OF MOTOR VEHICLES</h2>
         <br />
-        <p>Allows you to search for all cities within a given county.</p>
+        <h2><a href="/cars/dmv">Search Cars By VSN</a></h2>
+        <br />
+        <p>Allows you to search for cars with a given VSN.</p>
     </div><!--/span-->
 {% endblock %}

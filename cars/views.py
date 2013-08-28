@@ -13,7 +13,7 @@ from django.template import loader, Context, RequestContext
 from .models import Car
 from .forms import CarForm
 
-
+@login_required
 def dmv(request):
 
     if 'submit' in request.GET:
