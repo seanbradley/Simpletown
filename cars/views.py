@@ -16,11 +16,15 @@ from .forms import CarForm
 @login_required
 def dmv(request):
 
-    if 'submit' in request.GET:
+ if 'submit' in request.GET:
         form = CarForm(request.GET)
         if form.is_valid():
-            data = request.GET.get("vsn")
-            results = Car.objects.filter(vsn = data)
+            results = []
+            data = request.GET.get("vsn").replace('*', '.')
+            for car in Car.objects.all():
+                matches = re.match(data, car.vsn.replace('*', '.'))
+                if matches:
+                    results.append(car)
             context = {'results': results}
             return render_to_response(
             'cars/results.html',
