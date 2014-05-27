@@ -31,14 +31,14 @@ def dmv(request):
             RequestContext(request, context)
             )
 
-    else:
-        form = CarForm()
+        else:
+            form = CarForm()
 
-    context = {'form': form}
-    return render_to_response(
-    'cars/dmv.html',
-    RequestContext(request, context)
-    )
+        context = {'form': form}
+        return render_to_response(
+        'cars/dmv.html',
+        RequestContext(request, context)
+        )
 
 
 
