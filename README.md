@@ -9,7 +9,7 @@ Set up camp on AWS with Django in five minutes or less...
 
 You can see a live example of the site at:
 
-<http://23.21.214.134/>
+<http://54.227.144.216/>
 
 * Username = ubuntu
 * Password = ubuntu
@@ -18,13 +18,19 @@ If you want a smart barebones project skeleton for your first or your next Djang
 
 If, however, you are new to Django, and/or new to deploying Python frameworks on **AWS**, then you may need a little more meat on dem bones to get started.  If so, Simpletown is for you. Simpletown not only clearly hints at best practices, but provides everything you need to launch a complete--albeit minimal and easy to wrangle--Django project on one of Amazon's EC2 instances.  Simpletown comes not only with a few nicities for deploying on AWS, but also with two example views--easy-to-understand functional views--one of which fetches resources from an external API.
 
-The project evolved out of a technical interview.  The challenge: code from scratch a Django driven site with the aformentioned views requisite to the task. Develop, integrate version control, and then deploy the whole thing on an AWS Linux instance.  Do this within 24-hours.
+The project evolved out of a couple very similar technical interview.  The challenge: code from scratch a Django driven site with the some given view requisite. Develop, integrate version control, and then deploy the whole thing on an AWS Linux instance.  It seems to be a not so uncommon technical interview request.  Plus: the usual expectation is to do this within 24-hours.
 
 I'd rather do it in 5 minutes.
 
 _Voila'._  I give you Simpletown.
 
-View one retrieves US Geographic Survey data dynamically from the Small Business Admnistration's (SBA) API by using Kenneth Reitz's excellent [Requests] (http://docs.python-requests.org/en/latest/) library, and then cleans up the JSON and displays it as a list.  View two displays city info for a given county by querying a PostgreSQL database, which is manually populated with city info via a JSON fixture--the fixture itself being created from the the same SBA API.
+Simpletown presently has a couple different example views.
+
+_List Cities_ retrieves US Geographic Survey data dynamically from the Small Business Admnistration's (SBA) API by using Kenneth Reitz's excellent [Requests] (http://docs.python-requests.org/en/latest/) library, and then cleans up the JSON and displays it as a list.
+
+_Search Cities_ displays city info for a given county by querying a PostgreSQL database, which is manually populated with city info via a JSON fixture--the fixture itself being created from the the same SBA API.
+
+_Search Cars_ is similar to Search Cites insomuch as it displays vehicle make and model by a fictitious VSN (Vehicle Serial Number)--i.e., a made-up identifier analogous to a VIN, or Vehicle Identification Number.  Also similar to the Search Cities app, the Search Cars app queries the PostgreSQL database, which is likewise populated via a fixture.  However, the app assumes the raw data is supplied in CSV format, and some utilities are provided for converting the data to JSON.  Moreover, the data for the cars app contains some wildcard characters.
 
 
 ###TECHNOLOGY STACK
