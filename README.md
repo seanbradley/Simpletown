@@ -1,5 +1,5 @@
 # SIMPLETOWN
-####a lightweight Django app fetching JSON data from an external API
+#### a lightweight Django app fetching JSON data from an external API
 
 
 
