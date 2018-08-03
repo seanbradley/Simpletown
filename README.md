@@ -1,10 +1,10 @@
-#SIMPLETOWN
+# SIMPLETOWN
 ####a lightweight Django app fetching JSON data from an external API
 
 
 
 
-###ABOUT SIMPLETOWN
+### ABOUT SIMPLETOWN
 Set up camp on AWS with Django in five minutes or less...
 
 You can see a live example of the site at:
@@ -33,15 +33,15 @@ _Search Cities_ displays city info for a given county by querying a PostgreSQL d
 _Search Cars_ is similar to Search Cites insomuch as it displays vehicle make and model by a fictitious VSN (Vehicle Serial Number)--i.e., a made-up identifier analogous to a VIN, or Vehicle Identification Number.  Also similar to the Search Cities app, the Search Cars app queries the PostgreSQL database, which is likewise populated via a fixture.  However, the app assumes the raw data is supplied in CSV format, and some utilities are provided for converting the data to JSON.  Moreover, the data for the cars app contains some wildcard characters.
 
 
-###TECHNOLOGY STACK
+### DESCRIPTION OF THE STACK
 There are many ways to deploy Django.  Simpletown uses: Django, mod_wsgi, and Apache installed on an AWS EC2 server (Ubuntu Precise 12.04-i386) associated with an Elastic IP. PostgreSQL is the database used in both development and production.  Site styling provided courtesy of Bootstrap.  All HTML5/CSS3 is fully validated.
 
 
-###"FAST LANE" AMI FOR A RAPID LAUNCH (COMING SOON!)
+### "FAST LANE" AMI FOR A RAPID LAUNCH (COMING SOON!)
 Your own copy of Simpletown is available and instantly deployable in _less than_ five minutes if you purchase its Amazon Machine Image (AMI)...which is available for a one-time fee of just $5.  Save yourself the headache of backwards engineering the site from this repo; fahgeddabout configuring Apache and mod_wsgi. For the price of your carmel mocha machiatto (or a Redbull and Top Ramen), you can get past the boring Advil-laden part of deployment, and jump right into writing new models, new views, and styling your Django app as you see fit. Everything but e-mail settings are automagically configured for you in the FAST LANE AMI.
 
 
-###SETTINGS
+### SETTINGS
 With regard to Django settings, check out _The One True Way_ by Jacob Kaplan Moss:
 <https://speakerdeck.com/jacobian/the-best-and-worst-of-django?slide=81>
 
@@ -81,7 +81,7 @@ If you're using a virtualenv--and you should-- _and_ you plan on running multipl
 Finally, if you use a different e-mail provider than Gmail, you'll have to provide additional e-mail info in Django's settings file.
 
 
-###STATIC ASSETS VS. MEDIA FILES
+### STATIC ASSETS VS. MEDIA FILES
 As in other web frameworks,  "media" directories are traditionally reserved for files uploaded by users, and "static" is the label applied to resources related to styling the site. Django has its own conventions in this regard, and can get rather nuanced in its efforts to keep things tidy and loosely coupled between "apps" within a single overarching project.  Particularly, it's careful with regard to namespacing of static files, so that each Django app within a project can contain its own static assets (i.e., css, js, and img files) without name conflicts.  Django provides a convenience function--_collectstatic_--to gather all of these resources into a common directory (the "static" directory) and to reference them via a common URL.  (See: <https://docs.djangoproject.com/en/dev/howto/static-files/>)
 
 Many beginning Djangonauts find this process and its nomenclature a bit confusing.  Simpletown follows the convention of most Python and other web frameworks: it simply places all style related assets into one directory from the get go.  _Any_ file that has to do with styling of the site is labeled as "styles", and that's the directory in which you'll find it.  The "static" directory is empty--intentionally so--and should be left empty.  Manually placing files in the "static" directory will raise an ImproperlyConfigured exception. Presently, executing this command...
@@ -103,7 +103,7 @@ styles<br />
 ........js<br />
 
 
-###TODO
+### TODO
 * the virtualenv needs to be created with the --no-site-packages flag; this wasn't done on either the development machine nor the production machine, so the requirements.txt file may be a bit out of sync with regard to dependencies, and may require tweaking.
 * view_one loads slowly; page caching helps after the page loads the first time, but perhaps it'd be nicer if the data were fetched asynchronously while displaying a throbber or progress bar.
 * minor performance improvements might be enabled if static files were moved to S3 and retrieved from CloudFront CDN.
@@ -111,7 +111,7 @@ styles<br />
 
 ------------------------------------------------------------------------
 
-###LICENSE
+### LICENSE
 
 Copyright (c) 2013 by Sean Bradley.  All rights reserved.
 
@@ -128,6 +128,6 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 ------------------------------------------------------------------------
 
-###CONTACT
+### CONTACT
 
 Your input is highly valued. Feel free to e-mail me directly and make suggestions or ask questions.  You can reach me via sean@blogblimp.com
